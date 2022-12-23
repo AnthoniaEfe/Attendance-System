@@ -65,7 +65,7 @@ const LoginPageForm = styled.div`
 export default function LoginPage() {
   return (
     <LoginPageContent>
-      
+{/*       
       <div className="illustration">
       <Wave
           fill="#fff"
@@ -77,13 +77,13 @@ export default function LoginPage() {
           }}
         />
         
-      </div>
+      </div> */}
       <LoginPageForm>
         <h2> Welcome</h2>
 
         <Form />
 
-        <a href="mailto:helpdesk@nnpcgroup.com">Contact Helpdesk</a>
+        <a href="mailto:#@gmail.com">Contact Helpdesk</a>
         <a href="#">Forgot Password?</a>
       </LoginPageForm>
     </LoginPageContent>

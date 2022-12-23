@@ -39,15 +39,16 @@ const FormDiv = styled.div`
     background-color: var(--clr-dark-green);
 
     &:hover {
-      background-color: var(--clr-green);
+      /* background-color: var(--clr-green); */
       transform: scale(1.04);
     }
   }
 
   .admin-btn {
     align-self: center;
-    width: 80px;
-    padding: 5px;
+    width: auto;
+    margin: 0px auto 10px;
+    padding: 7px;
     border: 1px solid var(--clr-dark-green);
     border-radius: 10px;
     color: var(--clr-dark-green);
@@ -55,8 +56,9 @@ const FormDiv = styled.div`
     cursor: pointer;
 
     &:hover {
-      background-color: var(--clr-hover-green);
-      color: white;
+      transform: scale(1.02);
+      /* background-color: var(--clr-hover-green);
+      color: white; */
     }
   }
 `;
@@ -124,6 +126,8 @@ export default function Form() {
             value={password}
             required
           />
+
+          <button id="login-page-btn">LOGIN</button>
 
           <button className="admin-btn" onClick={() => setIsAdmin(!isAdmin)}>
             Not an Admin?
