@@ -56,18 +56,16 @@ h5,
 h6,
 p {
   font-weight: 400;
+  margin: 0;
 }
 
 h1,
 h2 {
   text-align: center;
+  color: var(--clr-text-green);
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
 a {
   text-decoration: none;
-}
-
-h1{
-  color: var(--clr-text-green);
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
