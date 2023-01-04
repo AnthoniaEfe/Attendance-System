@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const SideBar = styled.div`
   display: flex;
@@ -14,6 +14,12 @@ const SideBar = styled.div`
     height: 70px;
     background-color: var(--clr-white);
     padding: 10px;
+  }
+
+  a {
+    &:active {
+      background-color: var(--clr-light-grey);
+    }
   }
 `;
 
@@ -41,11 +47,11 @@ export default function sidebar() {
     <SideBar>
       <img src="./assets/Logo.svg" alt="logo" />
       <SideBarButtons>
-        <Link to="/dashboard">Dashboard</Link>
+        <NavLink to="/dashboard">Dashboard</NavLink>
 
-        <Link to="/attendance">Attendance</Link>
+        <NavLink to="/attendance">Attendance</NavLink>
 
-        <Link to="/report">Attendance Report</Link>
+        <NavLink to="/report">Attendance Report</NavLink>
       </SideBarButtons>
     </SideBar>
   );

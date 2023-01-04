@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router";
+import { NavLink } from "react-router-dom";
 
 const FormDiv = styled.div`
   width: 100%;
@@ -24,6 +25,14 @@ const FormDiv = styled.div`
     border: 1px solid var(--clr-darker-grey);
     border-radius: 10px;
   }
+  /* 
+  a {
+    color: black;
+
+    &:active {
+      color: red;
+    }
+  } */
 
   #login-page-btn {
     width: 80%;
@@ -96,6 +105,9 @@ export default function Form() {
           />
 
           <button id="login-page-btn">LOGIN</button>
+          {/* <NavLink to="/dashboard" activeClassName="active">
+            LOGIN
+          </NavLink> */}
 
           <button className="admin-btn" onClick={() => setIsAdmin(!isAdmin)}>
             Admin?
