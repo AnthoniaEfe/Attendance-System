@@ -1,10 +1,6 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-import Footer from "../page-frame/Footer";
-import Navigation from "../page-frame/Navigation";
-import SideBar from "../page-frame/Sidebar";
 import { Doughnut, Bar } from "react-chartjs-2";
-
+import SideFixture from "../page-frame/SideFixture";
 
 // const data = {
 //   labels: ["Red", "Green", "Yellow", "Grey", "Blue"],
@@ -24,10 +20,7 @@ import { Doughnut, Bar } from "react-chartjs-2";
 // };
 const DashboardPage = styled.div`
   background-color: var(--clr-light-grey);
-  display: grid;
-  grid-template-columns: 0.4fr 1.8fr 10fr;
-  grid-template-rows: 100vh;
-  grid-gap: 0;
+  display: flex;
   overflow: auto;
   width: 100vw;
   height: 100vh;
@@ -35,27 +28,28 @@ const DashboardPage = styled.div`
 
 const DashboardContents = styled.div`
   padding: 30px;
-  width: auto;
-
+  flex-grow: 20;
+  margin: 0;
+  margin-left: 15%;
   h2 {
     text-align: left;
     color: var(--clr-text-green);
     font-weight: 700;
     font-size: 32px;
   }
+`;
 
-  #label {
-    width: 30%;
-    background-color: white;
-    border-radius: 25px;
-    margin: 10px 0;
+const Label = styled.div`
+  width: 30%;
+  background-color: white;
+  border-radius: 25px;
+  margin: 10px 0;
+  padding: 5px;
+
+  p {
     padding: 5px;
-
-    p {
-      padding: 5px;
-      text-align: left;
-      font-size: var(--medium-font);
-    }
+    text-align: left;
+    font-size: var(--medium-font);
   }
 `;
 
@@ -85,16 +79,15 @@ const GridContainer = styled.div`
 export default function Dashboard() {
   return (
     <DashboardPage>
-      <Navigation />
-      <SideBar />
+      <SideFixture />
 
       <DashboardContents>
         <h2>Dashboard</h2>
-        <div id="label">
+        <Label>
           <p>
             Good Afternoon, Engr. Prof. <b>Oluwaseun</b>
           </p>
-        </div>
+        </Label>
 
         <GridContainer>
           <div className="grid-item item1">

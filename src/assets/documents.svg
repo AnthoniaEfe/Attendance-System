@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+ <g enable-background="new" stroke="#000">
+  <g transform="matrix(.4436 .18922 -.18632 .43681 -103.08 -284.85)" enable-background="new">
+   <path d="m485.68 455.24-3.1368 63.502 46.25 1.9992 1.9829-48.24-14.595-16.377-30.501-0.88402z" fill="#fff" stroke-width="3.5433"/>
+   <path transform="matrix(2.5831 .11159 -.10989 2.6233 -167.61 -1920.7)" d="m293.83 901.85h11.112" fill="none"/>
+   <path d="m492.03 484.17 28.703 1.24" fill="none" stroke-width="2.6055"/>
+   <path d="m491.75 490.79 28.703 1.24" fill="none" stroke-width="2.6055"/>
+   <path d="m491.49 497.09 28.703 1.24" fill="none" stroke-width="2.6055"/>
+  </g>
+  <g transform="matrix(.48009 -.045823 .045122 .47274 -246.61 -182.05)" enable-background="new">
+   <path d="m485.68 455.24-3.1368 63.502 46.25 1.9992 1.9829-48.24-14.595-16.377-30.501-0.88402z" fill="#fff" stroke-width="3.5433"/>
+   <path transform="matrix(2.5831 .11159 -.10989 2.6233 -167.61 -1920.7)" d="m293.83 901.85h11.112" fill="none"/>
+   <path d="m492.03 484.17 28.703 1.24" fill="none" stroke-width="2.6055"/>
+   <path d="m491.75 490.79 28.703 1.24" fill="none" stroke-width="2.6055"/>
+   <path d="m491.49 497.09 28.703 1.24" fill="none" stroke-width="2.6055"/>
+  </g>
+ </g>
+</svg>

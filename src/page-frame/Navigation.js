@@ -1,13 +1,14 @@
 import styled from "styled-components";
 
 import { Link, useNavigate } from "react-router-dom";
+
 import {
-  FaUser,
-  FaArrowLeft,
-  FaScrewdriver,
-  FaBell,
-  FaArrowAltCircleLeft,
-} from "react-icons/fa";
+  AiOutlineSetting,
+  AiOutlineBell,
+  AiOutlineUser,
+  AiOutlineLogout,
+  AiOutlineArrowLeft,
+} from "react-icons/ai";
 
 const NavBar = styled.div`
   display: flex;
@@ -21,11 +22,12 @@ const NavBar = styled.div`
   div {
     display: flex;
     flex-direction: column;
-    margin-top: 10px;
+    margin-top: 5px auto;
     justify-content: space-between;
-    padding: 5px;
+    padding: 0px auto;
     width: 100%;
-    height: 30%;
+    height: 28%;
+    /* background-color: blue; */
   }
 
   #logout {
@@ -43,10 +45,16 @@ const NavBar = styled.div`
     &:hover {
       cursor: pointer;
       transform: scale(1.02);
+      transform: rotate(10deg);
     }
   }
 `;
-
+const iconStyles = {
+  fontSize: "18px",
+  color: "var(--clr-white)",
+  margin: "0 auto",
+  fontWeight: "700",
+};
 export default function Navigation() {
   const navigate = useNavigate();
 
@@ -54,23 +62,23 @@ export default function Navigation() {
     <NavBar>
       <div>
         <button onClick={navigate(-1)}>
-          <FaArrowLeft />
+          <AiOutlineArrowLeft style={iconStyles} />
         </button>
 
         <button onClick={navigate(-1)}>
-          <FaUser />
+          <AiOutlineUser style={iconStyles} />
         </button>
 
         <button onClick={navigate(-1)}>
-          <FaBell />
+          <AiOutlineBell style={iconStyles} />
         </button>
 
         <button onClick={navigate(-1)}>
-          <FaScrewdriver />
+          <AiOutlineSetting style={iconStyles} />
         </button>
       </div>
       <button onClick={navigate(-1)} id="logout">
-        <FaArrowAltCircleLeft />
+        <AiOutlineLogout />
       </button>
     </NavBar>
   );

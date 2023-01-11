@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router";
 import { NavLink } from "react-router-dom";
@@ -85,6 +85,14 @@ export default function Form() {
   };
 
   return (
+    // useEffect(() => {
+    //   const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     console.log("submit");
+    //     navigate("/dashboard");
+    //   };
+    // },[]);
+
     <FormDiv>
       {!isAdmin ? (
         <form onSubmit={handleSubmit}>

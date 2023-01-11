@@ -1,5 +1,9 @@
 import styled from "styled-components";
-import Wave from "react-wavify";
+import cartoon1 from "../assets/Delivery.svg";
+import cartoon2 from "../assets/Finance.svg";
+import blob from "../assets/blob.svg";
+// import nuesa from "../assets/nuesabg.jpg";
+import nuesa from "../assets/nuesabg.png";
 
 import Form from "../components/Form.js";
 const LoginPageContent = styled.div`
@@ -12,15 +16,36 @@ const LoginPageContent = styled.div`
   overflow: hidden;
   background-color: var(--clr-white);
 
-  .illustration {
-    background-color: blue;
-    width: 55vw;
-    height: 100vw; 
-    position: fixed;
-      top: 0;
-      left: 0;
-      rotate:45deg;
-    
+  #blob {
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    bottom: 0;
+    left: 0;
+  }
+
+  #cartoon1 {
+    top: 10px;
+    left: 10px;
+    position: absolute;
+    height: 240px;
+    width: 240px;
+  }
+
+  #cartoon2 {
+    position: absolute;
+    height: 240px;
+    width: 240px;
+    bottom: 10px;
+    right: 60px;
+  }
+
+  #nuesa {
+    position: absolute;
+    height: 100px;
+    /* width: 40px; */
+    top: 5px;
+    right: 5px;
   }
 `;
 
@@ -28,7 +53,7 @@ const LoginPageForm = styled.div`
   background-color: var(--clr-white);
   height: 85%;
   width: 40%;
-  margin: 0 60px;
+  margin: 10px 60px;
   padding: 10px;
   align-self: center;
   display: flex;
@@ -37,17 +62,11 @@ const LoginPageForm = styled.div`
   border: 1px solid var(--clr-white);
   border-radius: 8%;
 
-  img {
-    position: relative;
-    top: 0;
-    left: 0;
-    margin: 5px 5px 10px auto;
-    width: 80px;
-    height: 50px;
-    border: none;
-    border-radius: none;
+  h2 {
+    margin: 60px 10px 10px;
+    font-size: 32px;
+    /* font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ; */
   }
-
   a {
     text-decoration: none;
     color: var(--clr-dark-green);
@@ -65,21 +84,13 @@ const LoginPageForm = styled.div`
 export default function LoginPage() {
   return (
     <LoginPageContent>
-{/*       
-      <div className="illustration">
-      <Wave
-          fill="#fff"
-          options={{
-            height: 20,
-            amplitude: 60,
-            speed: 0.1,
-            points: 7,
-          }}
-        />
-        
-      </div> */}
+      <img src={cartoon1} alt="illustration" id="cartoon1" />
+      <img src={cartoon2} alt="illustration" id="cartoon2" />
+      <img src={blob} alt="blob" id="blob" />
+      <img src={nuesa} alt="nuesa logo" id="nuesa" />
+
       <LoginPageForm>
-        <h2> Welcome</h2>
+        <h2> Welcome </h2>
 
         <Form />
 

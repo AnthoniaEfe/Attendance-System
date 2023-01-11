@@ -10,6 +10,7 @@ import AttendanceReport from "./pages/AttendanceReport";
 function App() {
   return (
     <div className="App">
+      
       {/*  Routing of pages*/}
       <Router>
         <Routes>
