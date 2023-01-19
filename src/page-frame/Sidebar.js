@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { Link, NavLink } from "react-router-dom";
 import { BsColumnsGap, BsTable, BsFileEarmarkText } from "react-icons/bs";
-// import abuad from "../assets/abuad.jpeg";
-import abuad from "../assets/abuadbg.png";
+
+import abuad from "../assets/COE.jpg";
 
 const SideBar = styled.div`
   display: flex;
@@ -14,8 +14,9 @@ const SideBar = styled.div`
 
   img {
     background-color: var(--clr-white);
-    margin: 20px 0;
-    width: 50px;
+    margin: 20px 5px;
+    height: 10%;
+    width: 100%;
   }
 `;
 

@@ -10,13 +10,12 @@ import AttendanceReport from "./pages/AttendanceReport";
 function App() {
   return (
     <div className="App">
-      
       {/*  Routing of pages*/}
       <Router>
         <Routes>
           <Route path="/" element={<LoginPage />} />
           {/* <Route path="/loading" element={<LoadingPage />} /> */}
-          <Route path="/dashboard" element={<Dashboard />} />
+          {/* <Route path="/" element={<Dashboard />} /> */}
           <Route path="/attendance" element={<Attendance />} />
           <Route path="/report" element={<AttendanceReport />} />
         </Routes>

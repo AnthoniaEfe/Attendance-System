@@ -2,8 +2,7 @@ import styled from "styled-components";
 import cartoon1 from "../assets/Delivery.svg";
 import cartoon2 from "../assets/Finance.svg";
 import blob from "../assets/blob.svg";
-// import nuesa from "../assets/nuesabg.jpg";
-import nuesa from "../assets/nuesabg.png";
+import abuad from "../assets/COE.jpg";
 
 import Form from "../components/Form.js";
 const LoginPageContent = styled.div`
@@ -40,7 +39,7 @@ const LoginPageContent = styled.div`
     right: 60px;
   }
 
-  #nuesa {
+  #abuad {
     position: absolute;
     height: 100px;
     /* width: 40px; */
@@ -87,7 +86,7 @@ export default function LoginPage() {
       <img src={cartoon1} alt="illustration" id="cartoon1" />
       <img src={cartoon2} alt="illustration" id="cartoon2" />
       <img src={blob} alt="blob" id="blob" />
-      <img src={nuesa} alt="nuesa logo" id="nuesa" />
+      <img src={abuad} alt="nuesa logo" id="abuad" />
 
       <LoginPageForm>
         <h2> Welcome </h2>

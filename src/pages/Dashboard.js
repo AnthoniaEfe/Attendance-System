@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Doughnut, Bar } from "react-chartjs-2";
 import SideFixture from "../page-frame/SideFixture";
+import file from "../assets/ready.png";
 
 // const data = {
 //   labels: ["Red", "Green", "Yellow", "Grey", "Blue"],
@@ -68,11 +69,39 @@ const GridContainer = styled.div`
     padding: 10px;
     background-color: white;
     border-radius: 25px;
+    display: grid;
+    grid-template-columns: 28% 72%;
+    grid-template-rows: 50% 50%;
     box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.3);
   }
 
   .item6 {
+    display: flex;
+    flex-direction: column;
     grid-area: 2 /2 / span 2 / span 2;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .fileimg {
+    margin: 10px 0px 10px 15px;
+    margin-right: none;
+    padding: 5px;
+    grid-area: 1/1 / span 2 / span 1;
+    width: 50%;
+    height: 60%;
+    color: white;
+  }
+
+  p {
+    text-align: left;
+    font-size: 18px;
+  }
+
+  .big-text {
+    color: var(--clr-darkest-grey);
+    font-size: 44px;
+    font-weight: 800;
   }
 `;
 
@@ -85,39 +114,34 @@ export default function Dashboard() {
         <h2>Dashboard</h2>
         <Label>
           <p>
-            Good Afternoon, Engr. Prof. <b>Oluwaseun</b>
+            Good Afternoon, <b>Engr. Prof. Oluwaseun</b>
           </p>
         </Label>
 
         <GridContainer>
           <div className="grid-item item1">
-            <img src="../assets/Logo.png" alt="" />
+            <img src={file} alt="" className="fileimg" />
+            <p className="big-text">82</p>
             <p>Total Students</p>
-            <h2>82</h2>
           </div>
           <div className="grid-item item2">
-            <img src="../assets/Logo.png" alt="" />
-            <p>Male Students</p>
-            <h2>40</h2>
+            <img src={file} alt="" className="fileimg" />
+            <p className="big-text">40</p> <p>Male Students</p>
           </div>{" "}
           <div className="grid-item item3">
-            <img src="../assets/Logo.png" alt="" />
-            <p>Female Students</p>
-            <h2>42</h2>
+            <img src={file} alt="" className="fileimg" />
+            <p className="big-text">42</p> <p>Female Students</p>
           </div>{" "}
           <div className="grid-item item4">
-            <img src="../assets/Logo.png" alt="" />
-            <p>Number of Courses</p>
-            <h2>9</h2>
+            <img src={file} alt="" className="fileimg" />
+            <p className="big-text">9</p> <p>Number of Courses</p>
           </div>{" "}
           <div className="grid-item item5">
-            <img src="../assets/Logo.png" alt="" />
-            <p>Number of Levels </p>
-            <h2>3</h2>
+            <img src={file} alt="" className="fileimg" />
+            <p className="big-text">3</p> <p>Number of Levels </p>
           </div>{" "}
           <div className="grid-item item6">
-            <img src="../assets/Logo.png" alt="" />
-            Monthly Attendance Review
+            <p> Monthly Attendance Review</p>
             <div>
               {" "}
               {/* <Doughnut data={[25, 28, 50, 76]}
@@ -126,8 +150,6 @@ export default function Dashboard() {
           </div>{" "}
         </GridContainer>
       </DashboardContents>
-
-      {/* <Footer /> */}
     </DashboardPage>
   );
 }
