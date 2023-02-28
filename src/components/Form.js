@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router";
 import { NavLink } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const FormDiv = styled.div`
   width: 100%;
@@ -25,14 +26,6 @@ const FormDiv = styled.div`
     border: 1px solid var(--clr-darker-grey);
     border-radius: 10px;
   }
-  /* 
-  a {
-    color: black;
-
-    &:active {
-      color: red;
-    }
-  } */
 
   #login-page-btn {
     width: 80%;
@@ -48,7 +41,6 @@ const FormDiv = styled.div`
     background-color: var(--clr-dark-green);
 
     &:hover {
-      /* background-color: var(--clr-green); */
       transform: scale(1.04);
     }
   }
@@ -66,8 +58,6 @@ const FormDiv = styled.div`
 
     &:hover {
       transform: scale(1.02);
-      /* background-color: var(--clr-hover-green);
-      color: white; */
     }
   }
 `;
@@ -78,21 +68,24 @@ export default function Form() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const passwordConfirmRef = useRef();
+  const { signup } = useAuth();
+  const [error, setError] = useState("");
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+      return setError("passwords do not match");
+    }
+    signup(emailRef.current.value, passwordRef.current.value);
     console.log("submit");
     navigate("/dashboard");
   };
 
   return (
-    // useEffect(() => {
-    //   const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     console.log("submit");
-    //     navigate("/dashboard");
-    //   };
-    // },[]);
-
     <FormDiv>
       {!isAdmin ? (
         <form onSubmit={handleSubmit}>

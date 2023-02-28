@@ -5,6 +5,7 @@ import blob from "../assets/blob.svg";
 import abuad from "../assets/COE.jpg";
 
 import Form from "../components/Form.js";
+import { AuthProvider } from "../context/AuthContext";
 const LoginPageContent = styled.div`
   display: flex;
   flex-direction: row;
@@ -82,20 +83,22 @@ const LoginPageForm = styled.div`
 
 export default function LoginPage() {
   return (
-    <LoginPageContent>
-      <img src={cartoon1} alt="illustration" id="cartoon1" />
-      <img src={cartoon2} alt="illustration" id="cartoon2" />
-      <img src={blob} alt="blob" id="blob" />
-      <img src={abuad} alt="nuesa logo" id="abuad" />
+    <AuthProvider>
+      <LoginPageContent>
+        <img src={cartoon1} alt="illustration" id="cartoon1" />
+        <img src={cartoon2} alt="illustration" id="cartoon2" />
+        <img src={blob} alt="blob" id="blob" />
+        <img src={abuad} alt="nuesa logo" id="abuad" />
 
-      <LoginPageForm>
-        <h2> Welcome </h2>
+        <LoginPageForm>
+          <h2> Welcome </h2>
 
-        <Form />
+          <Form />
 
-        <a href="mailto:#@gmail.com">Contact Helpdesk</a>
-        <a href="#">Forgot Password?</a>
-      </LoginPageForm>
-    </LoginPageContent>
+          <a href="mailto:#@gmail.com">Contact Helpdesk</a>
+          <a href="#">Forgot Password?</a>
+        </LoginPageForm>
+      </LoginPageContent>
+    </AuthProvider>
   );
 }

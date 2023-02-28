@@ -1,9 +1,8 @@
 import firebase from "firebase/compat/app";
-
 import "firebase/firestore";
 import "firebase/auth";
-import { useAuthState } from "react-firestore-hooks/auth";
-import { useCollectionData } from "react-firestore-hooks/firestore";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useCollectionData } from "react-firebase-hooks/firestore";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";

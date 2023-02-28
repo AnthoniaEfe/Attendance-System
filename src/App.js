@@ -15,7 +15,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LoginPage />} />
           {/* <Route path="/loading" element={<LoadingPage />} /> */}
-          {/* <Route path="/" element={<Dashboard />} /> */}
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/attendance" element={<Attendance />} />
           <Route path="/report" element={<AttendanceReport />} />
         </Routes>
