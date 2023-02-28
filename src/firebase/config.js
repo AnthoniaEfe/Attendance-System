@@ -1,12 +1,16 @@
 import firebase from "firebase/compat/app";
-import "firebase/firestore";
-import "firebase/auth";
+import "firebase/compat/firestore";
+
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 
+// const firebase = require("firebase");
+// // Required for side-effects
+// require("firebase/firestore");
+
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-
+require("firebase/auth");
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -18,10 +22,14 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+const app = firebase.initializeApp(firebaseConfig);
+// firebase.initializeApp(firebaseConfig);
+console.log("firebase initailized");
 
-const firestore = firebase.firestore();
+const db = firebase.firestore();
 
-export const auth = app.auth();
+// export const auth = app.auth();
+
+export const auth = firebase.auth();
 
 export default app;
