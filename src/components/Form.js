@@ -62,6 +62,11 @@ const FormDiv = styled.div`
   }
 `;
 
+const Card = styled.div`
+  padding: 10px;
+  text-align: center;
+`;
+
 export default function Form() {
   const navigate = useNavigate();
   const [isAdmin, setIsAdmin] = useState(false);
@@ -71,22 +76,34 @@ export default function Form() {
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
-  const { signup } = useAuth();
+  const { signup, currentUser } = useAuth();
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  async function handleSubmit(e) {
     e.preventDefault();
 
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError("passwords do not match");
     }
-    signup(emailRef.current.value, passwordRef.current.value);
+
+    try {
+      setError("");
+      setLoading(true);
+      await signup(emailRef.current.value, passwordRef.current.value);
+    } catch {
+      setError("unable to create account");
+    }
+    setLoading(false);
+
     console.log("submit");
     navigate("/dashboard");
-  };
+  }
 
   return (
     <FormDiv>
+      {error && <Card>{error}</Card>}
+      {currentUser && currentUser.email}
       {!isAdmin ? (
         <form onSubmit={handleSubmit}>
           <input
@@ -105,7 +122,9 @@ export default function Form() {
             required
           />
 
-          <button id="login-page-btn">LOGIN</button>
+          <button disabled={loading} id="login-page-btn">
+            LOGIN/SIGN UP
+          </button>
           {/* <NavLink to="/dashboard" activeClassName="active">
             LOGIN
           </NavLink> */}
