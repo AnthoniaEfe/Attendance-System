@@ -1,6 +1,7 @@
 import styled from "styled-components";
-
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 import {
   AiOutlineSetting,
@@ -57,6 +58,18 @@ const iconStyles = {
 };
 export default function Navigation() {
   const navigate = useNavigate();
+  const [error, setError] = useState("");
+  const { currentUser, logout } = useAuth();
+
+  async function handleLogOut() {
+    setError("");
+    try {
+      await logout();
+      navigate("/");
+    } catch {
+      setError("unable to log out");
+    }
+  }
 
   return (
     <NavBar>
@@ -75,9 +88,10 @@ export default function Navigation() {
 
         <button onClick={navigate(-1)}>
           <AiOutlineSetting style={iconStyles} />
+          {/* add update email and password dropdowns here */}
         </button>
       </div>
-      <button onClick={navigate(-1)} id="logout">
+      <button onClick={handleLogOut} id="logout">
         <AiOutlineLogout />
       </button>
     </NavBar>

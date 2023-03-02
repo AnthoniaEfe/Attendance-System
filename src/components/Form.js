@@ -76,7 +76,7 @@ export default function Form() {
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
-  const { signup, currentUser } = useAuth();
+  const { login } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -90,9 +90,9 @@ export default function Form() {
     try {
       setError("");
       setLoading(true);
-      await signup(emailRef.current.value, passwordRef.current.value);
+      await login(emailRef.current.value, passwordRef.current.value);
     } catch {
-      setError("unable to create account");
+      setError("unable to login");
     }
     setLoading(false);
 
@@ -103,7 +103,7 @@ export default function Form() {
   return (
     <FormDiv>
       {error && <Card>{error}</Card>}
-      {currentUser && currentUser.email}
+
       {!isAdmin ? (
         <form onSubmit={handleSubmit}>
           <input
