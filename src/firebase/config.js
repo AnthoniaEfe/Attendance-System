@@ -22,7 +22,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = firebase.initializeApp(firebaseConfig);
+const app = firebaseConfig.initializeApp(firebaseConfig);
 // firebase.initializeApp(firebaseConfig);
 console.log("firebase initailized");
 
