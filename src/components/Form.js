@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { async } from "@firebase/util";
 
 const FormDiv = styled.div`
   width: 100%;
@@ -82,15 +83,18 @@ export default function Form() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-
-    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-      return setError("passwords do not match");
-    }
+    // if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+    //   return setError("passwords do not match");
+    // }
 
     try {
       setError("");
       setLoading(true);
-      await login(emailRef.current.value, passwordRef.current.value);
+
+      console.log("email: ", email, "password: ", password);
+      await (email, password);
+      // await login(emailRef.current.value, passwordRef.current.value);
+      console.log("email: ", email, "password: ", password);
     } catch {
       setError("unable to login");
     }
@@ -98,6 +102,12 @@ export default function Form() {
 
     console.log("submit");
     navigate("/dashboard");
+    
+    console.log("submit2");
+  }
+
+  async function handleSignUp(e) {
+    e.preventDefault();
   }
 
   return (
@@ -123,11 +133,9 @@ export default function Form() {
           />
 
           <button disabled={loading} id="login-page-btn">
-            LOGIN/SIGN UP
-          </button>
-          {/* <NavLink to="/dashboard" activeClassName="active">
             LOGIN
-          </NavLink> */}
+          </button>
+          <button onClick={handleSignUp}>SIGN UP</button>
 
           <button className="admin-btn" onClick={() => setIsAdmin(!isAdmin)}>
             Admin?
