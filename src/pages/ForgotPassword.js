@@ -76,7 +76,7 @@ export default function ForgotPassword() {
   const [message, setMessage] = useState("");
   const { resetPassword } = useAuth();
 
-  async function handleSubmit(e) {
+  async function HandleSubmit(e) {
     e.preventDefault();
 
     try {
@@ -93,17 +93,19 @@ export default function ForgotPassword() {
     setLoading(false);
 
     console.log("submit");
-    navigate("/dashboard");
+    useEffect(() => {
+      navigate("/dashboard");
+    }, []);
   }
 
-  function handleReset() {}
+  function HandleReset() {}
 
   return (
     <FormDiv>
       {error && <Card>{error}</Card>}
       {message && <Card>{message}</Card>}
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={HandleSubmit}>
         <input
           type="email"
           onChange={(e) => setEmail(e.target.value)}
@@ -112,7 +114,7 @@ export default function ForgotPassword() {
           required
         />
 
-        <button id="login-page-btn" onClick={handleReset}>
+        <button id="login-page-btn" onClick={HandleReset}>
           Reset Password
         </button>
         <Link to="/">Back to Login</Link>

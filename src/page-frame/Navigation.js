@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 import {
@@ -61,37 +61,45 @@ export default function Navigation() {
   const [error, setError] = useState("");
   const { currentUser, logout } = useAuth();
 
-  async function handleLogOut() {
+  async function HandleLogOut() {
     setError("");
+    useEffect(() => {
+      navigate("/dashboard");
+    }, []);
     try {
       await logout();
-      navigate("/");
     } catch {
       setError("unable to log out");
     }
   }
 
+  function BackOne() {
+    useEffect(() => {
+      navigate(-1);
+    }, []);
+  }
+
   return (
     <NavBar>
       <div>
-        <button onClick={navigate(-1)}>
+        <button onClick={BackOne}>
           <AiOutlineArrowLeft style={iconStyles} />
         </button>
 
-        <button onClick={navigate(-1)}>
+        <button onClick={BackOne}>
           <AiOutlineUser style={iconStyles} />
         </button>
 
-        <button onClick={navigate(-1)}>
+        <button onClick={BackOne}>
           <AiOutlineBell style={iconStyles} />
         </button>
 
-        <button onClick={navigate(-1)}>
+        <button onClick={BackOne}>
           <AiOutlineSetting style={iconStyles} />
           {/* add update email and password dropdowns here */}
         </button>
       </div>
-      <button onClick={handleLogOut} id="logout">
+      <button onClick={HandleLogOut} id="logout">
         <AiOutlineLogout />
       </button>
     </NavBar>

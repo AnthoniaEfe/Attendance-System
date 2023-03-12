@@ -3,10 +3,12 @@ import { getAuth } from "firebase/auth";
 import {
   getFirestore,
   collection,
-  getDocs,
+  onSnapshot,
   addDoc,
   deleteDoc,
   doc,
+  query,
+  where,
 } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 
@@ -28,23 +30,21 @@ const db = getFirestore();
 //collection ref
 const colRef = collection(db, "cards");
 
-//get collection data
-getDocs(colRef)
-  .then((snapshot) => {
-    let cards = [];
-    snapshot.docs.forEach((doc) => {
-      cards.push({ ...doc.data(), id: doc.id });
-    });
-    console.log(cards);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+//queries
+// use to filter levels
+const q = query(colRef, where("course", "==", "MCT 509"));
 
-// //add documents
-// function addDocument() {
-//   addDoc(colRef, { });
-// }
+//real time collection data
+//////colRef
+onSnapshot(q, (snapshot) => {
+  let cards = [];
+  snapshot.docs.forEach((doc) => {
+    cards.push({ ...doc.data(), id: doc.id });
+  });
+  console.log(cards);
+});
+
+//exports
 export const auth = getAuth(app);
-export { colRef, addDoc };
+export { colRef, addDoc, deleteDoc, doc, db };
 export default app;

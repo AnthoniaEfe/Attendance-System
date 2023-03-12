@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import SideFixture from "../page-frame/SideFixture";
-import { colRef, addDoc } from "../firebase/config";
+import { colRef, addDoc, deleteDoc, doc, db } from "../firebase/config";
 import { useState } from "react";
 
 const AttendanceTable = styled.div`
@@ -84,24 +84,36 @@ const Table = styled.table`
   }
 `;
 
-function handleAdd(e) {
-  e.preventDefault();
-
-  addDoc(colRef, {
-    // name: name,
-    // matricnumber: matricNumber,
-    // course: course,
-  });
-}
-
-function handleDelete(e) {
-  e.preventDefault();
-}
-
 export default function Attendance() {
   const [name, setName] = useState("");
   const [course, setCourse] = useState("");
   const [matricNumber, setMatricNumber] = useState("");
+  const [time, setTime] = useState();
+  const [id, setId] = useState("");
+
+  function handleAdd(e) {
+    e.preventDefault();
+
+    addDoc(colRef, {
+      name: name,
+      matricnumber: matricNumber,
+      course: course,
+    }).then(() => {
+      setName("");
+      setCourse("MCT 501");
+      setMatricNumber("");
+    });
+  }
+
+  function handleDelete(e) {
+    e.preventDefault();
+
+    const docRef = doc(db, "cards", id);
+    deleteDoc(docRef).then(() => {
+      setId("");
+    });
+  }
+
   return (
     <AttendanceTable>
       <SideFixture />
@@ -115,7 +127,7 @@ export default function Attendance() {
           <button>400lvl</button>
           <button>500lvl</button>
         </Label>
-        <form class="add" onSubmit={handleAdd}>
+        <form className="add" onSubmit={handleAdd}>
           <input
             type="text"
             onChange={(e) => setName(e.target.value)}
@@ -128,25 +140,24 @@ export default function Attendance() {
             placeholder="Matric number"
             value={matricNumber}
           />
-          <input
-            type="options"
-            onChange={(e) => setCourse(e.target.value)}
-            placeholder="Course"
-            value={course}
-          />
-          <select>
-            <option value="Ford">Ford</option>
-            <option value="Volvo" selected>
-              Volvo
-            </option>
-            <option value="Fiat">Fiat</option>
-          </select>
-
+          <label>
+            course
+            <select onChange={(e) => setCourse(e.target.value)}>
+              <option value="MCT501">MCT 501</option>
+              <option value="MCT 509">MCT 509</option>
+              <option value="EEE 527">EEE 527</option>
+            </select>
+          </label>
           <button>add </button>
         </form>
 
-        <form class="delete" onSubmit={handleDelete}>
-          <input placeholder="id" type="string" name="id" />
+        <form className="delete" onSubmit={handleDelete}>
+          <input
+            type="text"
+            onChange={(e) => setId(e.target.value)}
+            placeholder="ID"
+            value={id}
+          />
           <button>Delete</button>
         </form>
 
@@ -154,7 +165,6 @@ export default function Attendance() {
           <h3>contents</h3>
           <Table>
             <tbody>
-              {" "}
               <tr>
                 <th>S/N</th>
                 <th>Name</th>

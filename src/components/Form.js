@@ -1,7 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router";
-import { NavLink } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { async } from "@firebase/util";
 
@@ -81,7 +80,7 @@ export default function Form() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  async function handleSubmit(e) {
+  async function HandleSubmit(e) {
     e.preventDefault();
     // if (passwordRef.current.value !== passwordConfirmRef.current.value) {
     //   return setError("passwords do not match");
@@ -101,12 +100,14 @@ export default function Form() {
     setLoading(false);
 
     console.log("submit");
-    navigate("/dashboard");
-    
+    useEffect(() => {
+      navigate("/dashboard");
+    }, []);
+
     console.log("submit2");
   }
 
-  async function handleSignUp(e) {
+  async function HandleSignUp(e) {
     e.preventDefault();
   }
 
@@ -115,7 +116,7 @@ export default function Form() {
       {error && <Card>{error}</Card>}
 
       {!isAdmin ? (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={HandleSubmit}>
           <input
             type="email"
             onChange={(e) => setEmail(e.target.value)}
@@ -135,14 +136,14 @@ export default function Form() {
           <button disabled={loading} id="login-page-btn">
             LOGIN
           </button>
-          <button onClick={handleSignUp}>SIGN UP</button>
+          <button onClick={HandleSignUp}>SIGN UP</button>
 
           <button className="admin-btn" onClick={() => setIsAdmin(!isAdmin)}>
             Admin?
           </button>
         </form>
       ) : (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={HandleSubmit}>
           <input
             type="email"
             onChange={(e) => setEmail(e.target.value)}
