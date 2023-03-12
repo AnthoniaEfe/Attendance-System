@@ -17,10 +17,10 @@ function App() {
       <Router>
         <AuthProvider>
           <Routes>
-            <Route path="/" element={<LoginPage />} />
+            {/* <Route path="/" element={<LoginPage />} /> */}
             {/* <Route path="/loading" element={<LoadingPage />} /> */}
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/attendance" element={<Attendance />} />
+            <Route path="/" element={<Attendance />} />
             <Route path="/report" element={<AttendanceReport />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
           </Routes>

@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import SideFixture from "../page-frame/SideFixture";
+import { colRef, addDoc } from "../firebase/config";
+import { useState } from "react";
 
 const AttendanceTable = styled.div`
   background-color: var(--clr-light-grey);
@@ -81,7 +83,25 @@ const Table = styled.table`
     border-bottom: 2px solid var(--clr-darker-grey);
   }
 `;
+
+function handleAdd(e) {
+  e.preventDefault();
+
+  addDoc(colRef, {
+    // name: name,
+    // matricnumber: matricNumber,
+    // course: course,
+  });
+}
+
+function handleDelete(e) {
+  e.preventDefault();
+}
+
 export default function Attendance() {
+  const [name, setName] = useState("");
+  const [course, setCourse] = useState("");
+  const [matricNumber, setMatricNumber] = useState("");
   return (
     <AttendanceTable>
       <SideFixture />
@@ -95,6 +115,41 @@ export default function Attendance() {
           <button>400lvl</button>
           <button>500lvl</button>
         </Label>
+        <form class="add" onSubmit={handleAdd}>
+          <input
+            type="text"
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Name"
+            value={name}
+          />
+          <input
+            type="text"
+            onChange={(e) => setMatricNumber(e.target.value)}
+            placeholder="Matric number"
+            value={matricNumber}
+          />
+          <input
+            type="options"
+            onChange={(e) => setCourse(e.target.value)}
+            placeholder="Course"
+            value={course}
+          />
+          <select>
+            <option value="Ford">Ford</option>
+            <option value="Volvo" selected>
+              Volvo
+            </option>
+            <option value="Fiat">Fiat</option>
+          </select>
+
+          <button>add </button>
+        </form>
+
+        <form class="delete" onSubmit={handleDelete}>
+          <input placeholder="id" type="string" name="id" />
+          <button>Delete</button>
+        </form>
+
         <TableContainer>
           <h3>contents</h3>
           <Table>
@@ -138,60 +193,6 @@ export default function Attendance() {
               </tr>
               <tr>
                 <td>5</td>
-                <td>Sarah Segun</td>
-                <td>24/ENG01/022</td>
-                <td>2455892992</td>
-                <td>EEE323</td>
-                <td>13:02</td>
-                <td>10/01/22</td>
-              </tr>
-              <tr>
-                <td>6</td>
-                <td>Sarah Segun</td>
-                <td>24/ENG01/022</td>
-                <td>2455892992</td>
-                <td>EEE323</td>
-                <td>13:02</td>
-                <td>10/01/22</td>
-              </tr>
-              <tr>
-                <td>7</td>
-                <td>Sarah Segun</td>
-                <td>24/ENG01/022</td>
-                <td>2455892992</td>
-                <td>EEE323</td>
-                <td>13:02</td>
-                <td>10/01/22</td>
-              </tr>
-              <tr>
-                <td>8</td>
-                <td>Sarah Segun</td>
-                <td>24/ENG01/022</td>
-                <td>2455892992</td>
-                <td>EEE323</td>
-                <td>13:02</td>
-                <td>10/01/22</td>
-              </tr>
-              <tr>
-                <td>8</td>
-                <td>Sarah Segun</td>
-                <td>24/ENG01/022</td>
-                <td>2455892992</td>
-                <td>EEE323</td>
-                <td>13:02</td>
-                <td>10/01/22</td>
-              </tr>
-              <tr>
-                <td>9</td>
-                <td>Sarah Segun</td>
-                <td>24/ENG01/022</td>
-                <td>2455892992</td>
-                <td>EEE323</td>
-                <td>13:02</td>
-                <td>10/01/22</td>
-              </tr>
-              <tr>
-                <td>10</td>
                 <td>Sarah Segun</td>
                 <td>24/ENG01/022</td>
                 <td>2455892992</td>

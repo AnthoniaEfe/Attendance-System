@@ -1,9 +1,13 @@
 import "firebase/compat/firestore";
 import { getAuth } from "firebase/auth";
-import { 
-  getFirestore, 
-  collection, 
-  getDocs } from "firebase/firestore";
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  addDoc,
+  deleteDoc,
+  doc,
+} from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
@@ -37,6 +41,10 @@ getDocs(colRef)
     console.log(err);
   });
 
+// //add documents
+// function addDocument() {
+//   addDoc(colRef, { });
+// }
 export const auth = getAuth(app);
-
+export { colRef, addDoc };
 export default app;
