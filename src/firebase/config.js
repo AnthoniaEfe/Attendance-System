@@ -9,6 +9,8 @@ import {
   doc,
   query,
   where,
+  orderBy,
+  serverTimestamp,
 } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 
@@ -32,10 +34,12 @@ const colRef = collection(db, "cards");
 
 //queries
 // use to filter levels
-const q = query(colRef, where("course", "==", "MCT 509"));
+const q = query(colRef, orderBy("addedAt"));
+
+//   where("course", "==", "MCT 509"),
 
 //real time collection data
-//////colRef
+////// first argument: colRef/ q
 onSnapshot(q, (snapshot) => {
   let cards = [];
   snapshot.docs.forEach((doc) => {
@@ -46,5 +50,5 @@ onSnapshot(q, (snapshot) => {
 
 //exports
 export const auth = getAuth(app);
-export { colRef, addDoc, deleteDoc, doc, db };
+export { colRef, addDoc, deleteDoc, doc, db, serverTimestamp };
 export default app;

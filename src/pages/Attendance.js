@@ -1,7 +1,15 @@
 import styled from "styled-components";
 import SideFixture from "../page-frame/SideFixture";
-import { colRef, addDoc, deleteDoc, doc, db } from "../firebase/config";
 import { useState } from "react";
+//all firestore import in single file
+import {
+  colRef,
+  addDoc,
+  deleteDoc,
+  doc,
+  db,
+  serverTimestamp,
+} from "../firebase/config";
 
 const AttendanceTable = styled.div`
   background-color: var(--clr-light-grey);
@@ -88,7 +96,6 @@ export default function Attendance() {
   const [name, setName] = useState("");
   const [course, setCourse] = useState("");
   const [matricNumber, setMatricNumber] = useState("");
-  const [time, setTime] = useState();
   const [id, setId] = useState("");
 
   function handleAdd(e) {
@@ -98,6 +105,7 @@ export default function Attendance() {
       name: name,
       matricnumber: matricNumber,
       course: course,
+      addAt: serverTimestamp()
     }).then(() => {
       setName("");
       setCourse("MCT 501");
