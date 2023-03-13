@@ -2,7 +2,12 @@ import { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router";
 import { useAuth } from "../context/AuthContext";
-import { async } from "@firebase/util";
+import {
+  auth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+} from "../firebase/config";
 
 const FormDiv = styled.div`
   width: 100%;
@@ -45,7 +50,7 @@ const FormDiv = styled.div`
     }
   }
 
-  .admin-btn {
+  .new-user {
     align-self: center;
     width: auto;
     margin: 0px auto 10px;
@@ -69,54 +74,78 @@ const Card = styled.div`
 
 export default function Form() {
   const navigate = useNavigate();
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [isNewUser, setIsNewUser] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
-  const emailRef = useRef();
-  const passwordRef = useRef();
-  const passwordConfirmRef = useRef();
   const { login } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  async function HandleSubmit(e) {
+  async function HandleLogin(e) {
     e.preventDefault();
-    // if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-    //   return setError("passwords do not match");
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then((cred) => {
+        console.log("user log in: ", cred.user);
+
+        navigate("/dashboard");
+      })
+      .catch((err) => console.log(err.message));
+    // try {
+    //   setError("");
+    //   setLoading(true);
+
+    //   console.log("email: ", email, "password: ", password);
+    //   await (email, password);
+    //   console.log("email: ", email, "password: ", password);
+    // } catch {
+    //   setError("unable to login");
     // }
+    // setLoading(false);
 
-    try {
-      setError("");
-      setLoading(true);
+    // console.log("submit");
+    // useEffect(() => {
+    //   navigate("/dashboard");
+    // }, []);
 
-      console.log("email: ", email, "password: ", password);
-      await (email, password);
-      // await login(emailRef.current.value, passwordRef.current.value);
-      console.log("email: ", email, "password: ", password);
-    } catch {
-      setError("unable to login");
-    }
-    setLoading(false);
-
-    console.log("submit");
-    useEffect(() => {
-      navigate("/dashboard");
-    }, []);
-
-    console.log("submit2");
+    // console.log("submit2");
   }
 
   async function HandleSignUp(e) {
     e.preventDefault();
+
+    if (password !== confirmPassword) {
+      console.log("passwords do not match");
+    } else {
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((cred) => {
+          console.log("new user: ", cred.user);
+
+          setEmail("");
+          setConfirmPassword("");
+          setPassword("");
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+    }
   }
 
+  //subscribing to auth changes
+  const unSubAuth = onAuthStateChanged(auth, (user) => {
+    console.log("user status change: ", user);
+  });
+
+  //unsubscribing to auth changes
+  unSubAuth();
   return (
     <FormDiv>
       {error && <Card>{error}</Card>}
 
-      {!isAdmin ? (
-        <form onSubmit={HandleSubmit}>
+      {!isNewUser ? (
+        <form onSubmit={HandleLogin}>
           <input
             type="email"
             onChange={(e) => setEmail(e.target.value)}
@@ -136,26 +165,17 @@ export default function Form() {
           <button disabled={loading} id="login-page-btn">
             LOGIN
           </button>
-          <button onClick={HandleSignUp}>SIGN UP</button>
 
-          <button className="admin-btn" onClick={() => setIsAdmin(!isAdmin)}>
-            Admin?
+          <button className="new-user" onClick={() => setIsNewUser(!isNewUser)}>
+            New User?
           </button>
         </form>
       ) : (
-        <form onSubmit={HandleSubmit}>
+        <form onSubmit={HandleSignUp}>
           <input
             type="email"
             onChange={(e) => setEmail(e.target.value)}
             placeholder="E-mail"
-            value={email}
-            required
-          />
-
-          <input
-            type="number"
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="admin ID"
             value={email}
             required
           />
@@ -168,10 +188,18 @@ export default function Form() {
             required
           />
 
+          <input
+            type="password"
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            placeholder="confirm password"
+            value={confirmPassword}
+            required
+          />
+
           <button id="login-page-btn">LOGIN</button>
 
-          <button className="admin-btn" onClick={() => setIsAdmin(!isAdmin)}>
-            Not an Admin?
+          <button className="new-user" onClick={() => setIsNewUser(!isNewUser)}>
+            Not a new user?
           </button>
         </form>
       )}

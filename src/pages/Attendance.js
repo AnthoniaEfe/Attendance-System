@@ -9,6 +9,8 @@ import {
   doc,
   db,
   serverTimestamp,
+  GetDocuments,
+  GetDocument,
 } from "../firebase/config";
 
 const AttendanceTable = styled.div`
@@ -105,18 +107,21 @@ export default function Attendance() {
       name: name,
       matricnumber: matricNumber,
       course: course,
-      addAt: serverTimestamp()
+      addAt: serverTimestamp(),
     }).then(() => {
       setName("");
       setCourse("MCT 501");
       setMatricNumber("");
     });
+
+    GetDocuments();
+    GetDocument();
   }
 
   function handleDelete(e) {
     e.preventDefault();
 
-    const docRef = doc(db, "cards", id);
+    const docRef = doc(db, "cards", "L1y5Q6bU75M4teCCfN5M");
     deleteDoc(docRef).then(() => {
       setId("");
     });
