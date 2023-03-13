@@ -5,6 +5,7 @@ import {
   signOut,
   signInWithEmailAndPassword,
   onAuthStateChanged,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 import {
   getFirestore,
@@ -62,6 +63,11 @@ function GetDocument() {
   });
 }
 
+//password reset email
+function resetPassword(email) {
+  sendPasswordResetEmail(email);
+}
+
 //exports
 export {
   colRef,
@@ -76,6 +82,7 @@ export {
   createUserWithEmailAndPassword,
   signOut,
   signInWithEmailAndPassword,
-  onAuthStateChanged
+  onAuthStateChanged,
+  sendPasswordResetEmail,
 };
 export default app;

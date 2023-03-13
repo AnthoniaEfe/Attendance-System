@@ -1,11 +1,68 @@
-import { useEffect, useState, useRef } from "react";
+import { useState } from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { sendPasswordResetEmail } from "firebase/auth";
+
+import cartoon1 from "../assets/Delivery.svg";
+import cartoon2 from "../assets/Finance.svg";
 
 const FormDiv = styled.div`
   width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--clr-white);
+
+  #cartoon1 {
+    top: 10px;
+    left: 10px;
+    position: absolute;
+    height: 240px;
+    width: 240px;
+  }
+
+  #cartoon2 {
+    position: absolute;
+    height: 240px;
+    width: 240px;
+    bottom: 10px;
+    right: 60px;
+  }
+  div {
+    background-color: var(--clr-white);
+    height: 85%;
+    width: 40%;
+    margin: 10px 60px;
+    padding: 10px;
+    align-self: center;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    border: 1px solid var(--clr-white);
+    border-radius: 8%;
+
+    h2 {
+      margin: 60px 10px 10px;
+      font-size: 32px;
+    }
+    a {
+      text-decoration: none;
+      color: var(--clr-dark-green);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      margin: 3px 0;
+
+      &:active {
+        text-decoration: 1px underline var(--clr-dark-green);
+      }
+    }
+  }
 
   form {
     display: flex;
@@ -13,7 +70,7 @@ const FormDiv = styled.div`
     align-items: center;
     justify-content: center;
     gap: 10px;
-    width: 100%;
+    width: 60%;
   }
 
   input {
@@ -27,7 +84,7 @@ const FormDiv = styled.div`
     border-radius: 10px;
   }
 
-  #login-page-btn {
+  button {
     width: 80%;
     margin: 10px auto;
     padding: 5px;
@@ -68,57 +125,46 @@ const Card = styled.div`
 `;
 
 export default function ForgotPassword() {
-  const navigate = useNavigate();
   const [email, setEmail] = useState("");
-  const emailRef = useRef();
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
-  const { resetPassword } = useAuth();
 
   async function HandleSubmit(e) {
     e.preventDefault();
 
-    try {
-      setMessage("");
-      setError("");
-      setLoading(true);
-      await resetPassword(emailRef.current.value);
-      setMessage("Check your email for further instructions");
-    } catch {
-      setError("unable to send password reset email");
-
-      //temp mail for temporary email
-    }
-    setLoading(false);
-
-    console.log("submit");
-    useEffect(() => {
-      navigate("/dashboard");
-    }, []);
+    sendPasswordResetEmail(email)
+      .then(() => {
+        setMessage("Check your email for further instructions");
+        console.log("email sent ");
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   }
-
-  function HandleReset() {}
 
   return (
     <FormDiv>
       {error && <Card>{error}</Card>}
       {message && <Card>{message}</Card>}
 
-      <form onSubmit={HandleSubmit}>
-        <input
-          type="email"
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="E-mail"
-          value={email}
-          required
-        />
+      <img src={cartoon1} alt="illustration" id="cartoon1" />
+      <img src={cartoon2} alt="illustration" id="cartoon2" />
+      <div>
+        <h2>Password Reset</h2>
 
-        <button id="login-page-btn" onClick={HandleReset}>
-          Reset Password
-        </button>
-        <Link to="/">Back to Login</Link>
-      </form>
+        <form onSubmit={HandleSubmit}>
+          <input
+            type="email"
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="E-mail"
+            value={email}
+            required
+          />
+
+          <button>Reset Password</button>
+          <Link to="/">Back to Login</Link>
+        </form>
+      </div>
     </FormDiv>
   );
 }
