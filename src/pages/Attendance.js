@@ -96,20 +96,53 @@ const Table = styled.table`
 
 const ManualButton = styled.button`
   background-color: white;
-  padding: 10px;
+  padding: 5px;
   border: 1px solid rgba(0, 0, 0, 0);
-  border-radius: 18%;
+  border-radius: 25px;
   font-size: 14px;
   width: 18%;
   margin: 0 20px;
   height: 2.8em;
-  font-weight: 600;
+  /* font-weight: 500; */
   color: var(--clr-text-green);
 
   &:hover {
     transform: scale(1.01);
     color: var(--clr-white);
     background-color: var(--clr-text-green);
+  }
+`;
+
+const ManualForm = styled.form`
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  align-self: center;
+  margin: 10px auto;
+
+  label {
+    display: inline-block;
+    margin: 5px auto;
+  }
+
+  input,
+  select {
+    height: 30px;
+    border-radius: 25px;
+    border: 1px solid rgba(0, 0, 0, 1);
+    margin: 5px;
+    padding: 5px;
+  }
+
+  button {
+    height: 30px;
+    width: 30%;
+    background-color: white;
+    border-radius: 25px;
+    border: 1px solid rgba(0, 0, 0, 1);
+    margin: 5px auto;
+    padding: 5px;
   }
 `;
 
@@ -178,7 +211,7 @@ export default function Attendance() {
         </div>
 
         {showForm ? (
-          <form>
+          <ManualForm>
             <input
               type="text"
               onChange={(e) => setName(e.target.value)}
@@ -191,14 +224,13 @@ export default function Attendance() {
               placeholder="Matric number"
               value={matricNumber}
             />
-            <label>
-              course
-              <select onChange={(e) => setCourse(e.target.value)}>
-                <option value="MCT501">MCT 501</option>
-                <option value="MCT 509">MCT 509</option>
-                <option value="EEE 527">EEE 527</option>
-              </select>
-            </label>
+            <label for="course">course</label>
+            <select onChange={(e) => setCourse(e.target.value)} name="course">
+              <option value="MCT501">MCT 501</option>
+              <option value="MCT 509">MCT 509</option>
+              <option value="EEE 527">EEE 527</option>
+            </select>
+
             <button onClick={handleAdd}>add </button>
 
             <input
@@ -208,7 +240,7 @@ export default function Attendance() {
               value={id}
             />
             <button onClick={handleDelete}>Delete</button>
-          </form>
+          </ManualForm>
         ) : null}
 
         <TableContainer>
