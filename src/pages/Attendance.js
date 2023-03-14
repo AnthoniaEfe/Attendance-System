@@ -94,11 +94,31 @@ const Table = styled.table`
   }
 `;
 
+const ManualButton = styled.button`
+  background-color: white;
+  padding: 10px;
+  border: 1px solid rgba(0, 0, 0, 0);
+  border-radius: 18%;
+  font-size: 14px;
+  width: 18%;
+  margin: 0 20px;
+  height: 2.8em;
+  font-weight: 600;
+  color: var(--clr-text-green);
+
+  &:hover {
+    transform: scale(1.01);
+    color: var(--clr-white);
+    background-color: var(--clr-text-green);
+  }
+`;
+
 export default function Attendance() {
   const [name, setName] = useState("");
   const [course, setCourse] = useState("");
   const [matricNumber, setMatricNumber] = useState("");
   const [id, setId] = useState("");
+  const [showForm, setShowForm] = useState(false);
 
   function handleAdd(e) {
     e.preventDefault();
@@ -132,50 +152,66 @@ export default function Attendance() {
       <SideFixture />
       <Container>
         <h2>Attendance Table</h2>
+        <div
+          style={{
+            display: "flex",
+            flex: "row no-wrap",
+            alignItems: "center",
+          }}
+        >
+          {" "}
+          <Label>
+            Sort by:
+            <button>100lvl</button>
+            <button>200lvl</button>
+            <button>300lvl</button>
+            <button>400lvl</button>
+            <button>500lvl</button>
+          </Label>
+          <ManualButton
+            onClick={() => {
+              setShowForm(!showForm);
+            }}
+          >
+            Add attendance manually{" "}
+          </ManualButton>
+        </div>
 
-        <Label>
-          <button>100lvl</button>
-          <button>200lvl</button>
-          <button>300lvl</button>
-          <button>400lvl</button>
-          <button>500lvl</button>
-        </Label>
-        <form className="add" onSubmit={handleAdd}>
-          <input
-            type="text"
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Name"
-            value={name}
-          />
-          <input
-            type="text"
-            onChange={(e) => setMatricNumber(e.target.value)}
-            placeholder="Matric number"
-            value={matricNumber}
-          />
-          <label>
-            course
-            <select onChange={(e) => setCourse(e.target.value)}>
-              <option value="MCT501">MCT 501</option>
-              <option value="MCT 509">MCT 509</option>
-              <option value="EEE 527">EEE 527</option>
-            </select>
-          </label>
-          <button>add </button>
-        </form>
+        {showForm ? (
+          <form>
+            <input
+              type="text"
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Name"
+              value={name}
+            />
+            <input
+              type="text"
+              onChange={(e) => setMatricNumber(e.target.value)}
+              placeholder="Matric number"
+              value={matricNumber}
+            />
+            <label>
+              course
+              <select onChange={(e) => setCourse(e.target.value)}>
+                <option value="MCT501">MCT 501</option>
+                <option value="MCT 509">MCT 509</option>
+                <option value="EEE 527">EEE 527</option>
+              </select>
+            </label>
+            <button onClick={handleAdd}>add </button>
 
-        <form className="delete" onSubmit={handleDelete}>
-          <input
-            type="text"
-            onChange={(e) => setId(e.target.value)}
-            placeholder="ID"
-            value={id}
-          />
-          <button>Delete</button>
-        </form>
+            <input
+              type="text"
+              onChange={(e) => setId(e.target.value)}
+              placeholder="ID"
+              value={id}
+            />
+            <button onClick={handleDelete}>Delete</button>
+          </form>
+        ) : null}
 
         <TableContainer>
-          <h3>contents</h3>
           <Table>
             <tbody>
               <tr>

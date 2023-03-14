@@ -5,6 +5,7 @@ import { sendPasswordResetEmail } from "firebase/auth";
 
 import cartoon1 from "../assets/Delivery.svg";
 import cartoon2 from "../assets/Finance.svg";
+import abuad from "../assets/COE.jpg";
 
 const FormDiv = styled.div`
   width: 100%;
@@ -33,6 +34,13 @@ const FormDiv = styled.div`
     bottom: 10px;
     right: 60px;
   }
+
+  #abuad {
+    position: absolute;
+    height: 100px;
+    top: 5px;
+    right: 5px;
+  }
   div {
     background-color: var(--clr-white);
     height: 85%;
@@ -47,13 +55,13 @@ const FormDiv = styled.div`
     border-radius: 8%;
 
     h2 {
-      margin: 60px 10px 10px;
+      margin: 40px 10px;
       font-size: 32px;
     }
     a {
       text-decoration: none;
       color: var(--clr-dark-green);
-      font-size: 14px;
+      font-size: 16px;
       font-weight: 500;
       cursor: pointer;
       margin: 3px 0;
@@ -70,7 +78,7 @@ const FormDiv = styled.div`
     align-items: center;
     justify-content: center;
     gap: 10px;
-    width: 60%;
+    width: 100%;
   }
 
   input {
@@ -149,6 +157,7 @@ export default function ForgotPassword() {
 
       <img src={cartoon1} alt="illustration" id="cartoon1" />
       <img src={cartoon2} alt="illustration" id="cartoon2" />
+      <img src={abuad} alt="nuesa logo" id="abuad" />
       <div>
         <h2>Password Reset</h2>
 
