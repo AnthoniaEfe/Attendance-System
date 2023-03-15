@@ -1,17 +1,8 @@
 import styled from "styled-components";
 import SideFixture from "../page-frame/SideFixture";
 import { useState } from "react";
+import Modal from "../components/Modal";
 //all firestore import in single file
-import {
-  colRef,
-  addDoc,
-  deleteDoc,
-  doc,
-  db,
-  serverTimestamp,
-  GetDocuments,
-  GetDocument,
-} from "../firebase/config";
 
 const AttendanceTable = styled.div`
   background-color: var(--clr-light-grey);
@@ -39,6 +30,7 @@ const Label = styled.div`
   background-color: white;
   border-radius: 25px;
   margin: 10px 0;
+  height: 30px;
   padding: 5px;
   display: flex;
   justify-content: space-evenly;
@@ -60,8 +52,8 @@ const Label = styled.div`
 
 const TableContainer = styled.div`
   border-radius: 25px;
-  /* box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.3); */
-  margin-top: 30px;
+  box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.3);
+  margin-top: 15px;
   width: 100%;
   height: auto;
   padding: 10px;
@@ -101,7 +93,7 @@ const ManualButton = styled.button`
   border-radius: 25px;
   font-size: 14px;
   width: 18%;
-  margin: 0 20px;
+  margin: 10px 20px;
   height: 2.8em;
   /* font-weight: 500; */
   color: var(--clr-text-green);
@@ -113,83 +105,19 @@ const ManualButton = styled.button`
   }
 `;
 
-const ManualForm = styled.form`
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  padding: 5px;
-  align-self: center;
-  margin: 10px auto;
-
-  label {
-    display: inline-block;
-    margin: 5px auto;
-  }
-
-  input,
-  select {
-    height: 30px;
-    border-radius: 25px;
-    border: 1px solid rgba(0, 0, 0, 1);
-    margin: 5px;
-    padding: 5px;
-  }
-
-  button {
-    height: 30px;
-    width: 30%;
-    background-color: white;
-    border-radius: 25px;
-    border: 1px solid rgba(0, 0, 0, 1);
-    margin: 5px auto;
-    padding: 5px;
-  }
-`;
-
 export default function Attendance() {
-  const [name, setName] = useState("");
-  const [course, setCourse] = useState("");
-  const [matricNumber, setMatricNumber] = useState("");
-  const [id, setId] = useState("");
   const [showForm, setShowForm] = useState(false);
-
-  function handleAdd(e) {
-    e.preventDefault();
-
-    addDoc(colRef, {
-      name: name,
-      matricnumber: matricNumber,
-      course: course,
-      addAt: serverTimestamp(),
-    }).then(() => {
-      setName("");
-      setCourse("MCT 501");
-      setMatricNumber("");
-    });
-
-    GetDocuments();
-    GetDocument();
-  }
-
-  function handleDelete(e) {
-    e.preventDefault();
-
-    const docRef = doc(db, "cards", "L1y5Q6bU75M4teCCfN5M");
-    deleteDoc(docRef).then(() => {
-      setId("");
-    });
-  }
 
   return (
     <AttendanceTable>
-      <SideFixture />
+      <SideFixture /> {showForm ? <Modal modalControl={setShowForm}/> : null}
       <Container>
         <h2>Attendance Table</h2>
         <div
           style={{
             display: "flex",
             flex: "row no-wrap",
-            alignItems: "center",
+            alignItems: "top",
           }}
         >
           {" "}
@@ -209,40 +137,6 @@ export default function Attendance() {
             Add attendance manually{" "}
           </ManualButton>
         </div>
-
-        {showForm ? (
-          <ManualForm>
-            <input
-              type="text"
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Name"
-              value={name}
-            />
-            <input
-              type="text"
-              onChange={(e) => setMatricNumber(e.target.value)}
-              placeholder="Matric number"
-              value={matricNumber}
-            />
-            <label for="course">course</label>
-            <select onChange={(e) => setCourse(e.target.value)} name="course">
-              <option value="MCT501">MCT 501</option>
-              <option value="MCT 509">MCT 509</option>
-              <option value="EEE 527">EEE 527</option>
-            </select>
-
-            <button onClick={handleAdd}>add </button>
-
-            <input
-              type="text"
-              onChange={(e) => setId(e.target.value)}
-              placeholder="ID"
-              value={id}
-            />
-            <button onClick={handleDelete}>Delete</button>
-          </ManualForm>
-        ) : null}
-
         <TableContainer>
           <Table>
             <tbody>
@@ -266,24 +160,6 @@ export default function Attendance() {
               </tr>
               <tr>
                 <td>2</td>
-                <td>Sarah Segun</td>
-                <td>24/ENG01/022</td>
-                <td>2455892992</td>
-                <td>EEE323</td>
-                <td>13:02</td>
-                <td>10/01/22</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Sarah Segun</td>
-                <td>24/ENG01/022</td>
-                <td>2455892992</td>
-                <td>EEE323</td>
-                <td>13:02</td>
-                <td>10/01/22</td>
-              </tr>
-              <tr>
-                <td>5</td>
                 <td>Sarah Segun</td>
                 <td>24/ENG01/022</td>
                 <td>2455892992</td>
