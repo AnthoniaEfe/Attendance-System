@@ -46,7 +46,7 @@ const q = query(colRef, orderBy("addedAt"));
 
 //real time collection data
 function GetDocuments() {
-  onSnapshot(q, (snapshot) => {
+  onSnapshot(colRef, (snapshot) => {
     let cards = [];
     snapshot.docs.forEach((doc) => {
       cards.push({ ...doc.data(), id: doc.id });

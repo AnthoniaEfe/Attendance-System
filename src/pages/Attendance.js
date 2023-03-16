@@ -2,14 +2,18 @@ import styled from "styled-components";
 import SideFixture from "../page-frame/SideFixture";
 import { useState } from "react";
 import Modal from "../components/Modal";
-//all firestore import in single file
+import { GetDocuments } from "../firebase/config";
+import { useEffect } from "react";
 
 const AttendanceTable = styled.div`
-  background-color: var(--clr-light-grey);
+  background-color: #f3f2e7;
   display: flex;
-  overflow: auto;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
+  overflow: auto;
+  position: absolute;
+  top: 0;
+  right: 0;
 `;
 const Container = styled.div`
   padding: 30px;
@@ -108,69 +112,88 @@ const ManualButton = styled.button`
 export default function Attendance() {
   const [showForm, setShowForm] = useState(false);
 
+  useEffect(() => {
+    let Documents = GetDocuments();
+    console.log("documents", Documents);
+  }, []);
+
+  function GetTableData() {
+    // Documents = GetDocuments();
+  }
+
   return (
-    <AttendanceTable>
-      <SideFixture /> {showForm ? <Modal modalControl={setShowForm}/> : null}
-      <Container>
-        <h2>Attendance Table</h2>
-        <div
-          style={{
-            display: "flex",
-            flex: "row no-wrap",
-            alignItems: "top",
-          }}
-        >
-          {" "}
-          <Label>
-            Sort by:
-            <button>100lvl</button>
-            <button>200lvl</button>
-            <button>300lvl</button>
-            <button>400lvl</button>
-            <button>500lvl</button>
-          </Label>
-          <ManualButton
-            onClick={() => {
-              setShowForm(!showForm);
+    <div
+      style={{
+        display: "grid",
+        width: "100vw",
+        height: "100vh",
+        gridTemplateColumns: "1fr 5fr",
+        justifyContent: "space-evenly",
+        alignItems: "center",
+        gap: "0",
+      }}
+    >
+      <SideFixture />
+      <AttendanceTable>
+        {showForm ? <Modal modalControl={setShowForm} /> : null}
+        <Container>
+          <h2>Attendance Table</h2>
+          <div
+            style={{
+              display: "flex",
+              flex: "row no-wrap",
+              alignItems: "top",
             }}
           >
-            Add attendance manually{" "}
-          </ManualButton>
-        </div>
-        <TableContainer>
-          <Table>
-            <tbody>
-              <tr>
-                <th>S/N</th>
-                <th>Name</th>
-                <th>Matric No.</th>
-                <th>ID No.</th>
-                <th>Course</th>
-                <th>Time</th>
-                <th>Date</th>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>Sarah elizabeth Segun</td>
-                <td>24/ENG01/022</td>
-                <td>2455892992</td>
-                <td>EEE323</td>
-                <td>13:02</td>
-                <td>10/01/22</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Sarah Segun</td>
-                <td>24/ENG01/022</td>
-                <td>2455892992</td>
-                <td>EEE323</td>
-                <td>13:02</td>
-                <td>10/01/22</td>
-              </tr>
-            </tbody>
-          </Table>
-        </TableContainer>
-      </Container>
-    </AttendanceTable>
+            {" "}
+            <Label>
+              Sort by:
+              <button>100lvl</button>
+              <button>200lvl</button>
+              <button>300lvl</button>
+              <button>400lvl</button>
+              <button>500lvl</button>
+            </Label>
+            <ManualButton
+              onClick={() => {
+                setShowForm(!showForm);
+              }}
+            >
+              Add attendance manually{" "}
+            </ManualButton>
+            <button onClick={GetTableData()}>Get Documents</button>
+          </div>
+          <TableContainer>
+            <h2>Attendance Table</h2>
+            <Table>
+              <th>
+                <td>SN</td>
+                <td>Name</td>
+                <td>Matric Number</td>
+                <td>Course</td>
+                <td>Time</td>
+                <td>Date</td>
+              </th>
+              {/* <tbody>
+              {Documents === []
+                ? console.log("no table data")
+                : // : (Documents.forEach((data, index) => {
+                  //     return (
+                  //       <tr key={index}>
+                  //         <td>{index + 1}</td>
+                  //         <td>{data.name}</td>
+                  //         <td>{data.matricNumber}</td>
+                  //         <td>{data.course}</td>
+                  //         <td>{data.addAt}</td>
+                  //       </tr>
+                  //     );
+                  //   }))
+                  null}
+            </tbody> */}
+            </Table>
+          </TableContainer>
+        </Container>
+      </AttendanceTable>
+    </div>
   );
 }

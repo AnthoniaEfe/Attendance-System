@@ -91,25 +91,31 @@ export default function Modal(props) {
   const [course, setCourse] = useState("");
   const [matricNumber, setMatricNumber] = useState("");
   const [id, setId] = useState("");
+  let Documents = [];
 
   function handleAdd(e) {
     e.preventDefault();
 
-    addDoc(colRef, {
-      name: name,
-      matricnumber: matricNumber,
-      course: course,
-      addAt: serverTimestamp(),
-    }).then(() => {
-      setName("");
-      setCourse("MCT 501");
-      setMatricNumber("");
-    });
+    if (name !== "" && course !== "" && matricNumber !== "") {
+      addDoc(colRef, {
+        name: name,
+        matricnumber: matricNumber,
+        course: course,
+        addAt: serverTimestamp(),
+      }).then(() => {
+        setName("");
+        setCourse("MCT 501");
+        setMatricNumber("");
+      });
 
-    GetDocuments();
-    GetDocument();
+      Documents = GetDocuments();
+      console.log(Documents);
+      Documents.forEach()
 
-    closeModal();
+      closeModal();
+    } else {
+      alert("Please input values to form");
+    }
   }
 
   function handleDelete(e) {
@@ -148,11 +154,7 @@ export default function Modal(props) {
             required
           />
           <label htmlFor="course">Course</label>
-          <select
-            onChange={(e) => setCourse(e.target.value)}
-            name="course"
-            required
-          >
+          <select onChange={(e) => setCourse(e.target.value)} name="course">
             <option value="MCT501">MCT 501</option>
             <option value="MCT 509">MCT 509</option>
             <option value="EEE 527">EEE 527</option>

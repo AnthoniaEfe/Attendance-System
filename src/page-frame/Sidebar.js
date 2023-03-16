@@ -11,7 +11,7 @@ const SideBar = styled.div`
   width: auto;
   padding: 10% 0;
   background-color: var(--clr-white);
-
+  border-right: 1px solid var(--clr-dark-grey);
   img {
     background-color: var(--clr-white);
     margin: 20px 5px;
