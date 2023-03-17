@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import SideFixture from "../page-frame/SideFixture";
+import Sidebar from "../page-frame/Sidebar";
+import Navigation from "../page-frame/Navigation";
 import { useState } from "react";
 import Modal from "../components/Modal";
 import { GetDocuments } from "../firebase/config";
@@ -8,18 +9,13 @@ import { useEffect } from "react";
 const AttendanceTable = styled.div`
   background-color: #f3f2e7;
   display: flex;
-  width: 100%;
+  width: auto;
   height: 100vh;
   overflow: auto;
-  position: absolute;
-  top: 0;
-  right: 0;
 `;
 const Container = styled.div`
-  padding: 30px;
-  flex-grow: 20;
-  margin: 0;
-  margin-left: 15%;
+  width: 100%;
+  padding: 2em;
 
   h2 {
     text-align: left;
@@ -31,7 +27,7 @@ const Container = styled.div`
 
 const Label = styled.div`
   width: 35%;
-  background-color: white;
+  /* background-color: white; */
   border-radius: 25px;
   margin: 10px 0;
   height: 30px;
@@ -43,7 +39,7 @@ const Label = styled.div`
   button {
     border: 3px solid rgba(0, 0, 0, 0);
     background-color: rgba(0, 0, 0, 0);
-    margin: 0 5px;
+    /* margin: 0 5px; */
     color: var(--clr-darkest-grey);
     font-size: 14px;
 
@@ -127,13 +123,14 @@ export default function Attendance() {
         display: "grid",
         width: "100vw",
         height: "100vh",
-        gridTemplateColumns: "1fr 5fr",
+        gridTemplateColumns: "0.5fr 2.6fr 15fr",
         justifyContent: "space-evenly",
-        alignItems: "center",
+        // alignItems: "center",
         gap: "0",
       }}
     >
-      <SideFixture />
+      <Navigation />
+      <Sidebar />
       <AttendanceTable>
         {showForm ? <Modal modalControl={setShowForm} /> : null}
         <Container>
@@ -147,7 +144,6 @@ export default function Attendance() {
           >
             {" "}
             <Label>
-              Sort by:
               <button>100lvl</button>
               <button>200lvl</button>
               <button>300lvl</button>
@@ -166,14 +162,13 @@ export default function Attendance() {
           <TableContainer>
             <h2>Attendance Table</h2>
             <Table>
-              <th>
-                <td>SN</td>
-                <td>Name</td>
-                <td>Matric Number</td>
-                <td>Course</td>
-                <td>Time</td>
-                <td>Date</td>
-              </th>
+              <th>SN</th>
+              <th>Name</th>
+              <th>Matric Number</th>
+              <th>Course</th>
+              <th>Time</th>
+              <th>Date</th>
+
               {/* <tbody>
               {Documents === []
                 ? console.log("no table data")

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Doughnut, Bar } from "react-chartjs-2";
-import SideFixture from "../page-frame/SideFixture";
+import Sidebar from "../page-frame/Sidebar";
+import Navigation from "../page-frame/Navigation";
 import file from "../assets/ready.png";
 
 // const data = {
@@ -20,18 +21,16 @@ import file from "../assets/ready.png";
 //   ],
 // };
 const DashboardPage = styled.div`
-  background-color: var(--clr-light-grey);
+  background-color: #f3f2e7;
   display: flex;
-  overflow: auto;
-  width: 100vw;
+  width: auto;
   height: 100vh;
+  overflow: auto;
 `;
 
 const DashboardContents = styled.div`
-  padding: 30px;
-  flex-grow: 20;
-  margin: 0;
-  margin-left: 15%;
+  width: 100%;
+  padding: 2em;
   h2 {
     text-align: left;
     color: var(--clr-text-green);
@@ -107,49 +106,62 @@ const GridContainer = styled.div`
 
 export default function Dashboard() {
   return (
-    <DashboardPage>
-      <SideFixture />
+    <div
+      style={{
+        display: "grid",
+        width: "100vw",
+        height: "100vh",
+        gridTemplateColumns: "0.5fr 2.6fr 15fr",
+        justifyContent: "space-evenly",
+        // alignItems: "center",
+        gap: "0",
+      }}
+    >   <Navigation />
+        <Sidebar />
+      <DashboardPage>
+     
 
-      <DashboardContents>
-        <h2>Dashboard</h2>
-        <Label>
-          <p>
-            Good Afternoon, <b>Engr. Prof. Oluwaseun</b>
-          </p>
-        </Label>
+        <DashboardContents>
+          <h2>Dashboard</h2>
+          <Label>
+            <p>
+              Good Afternoon, <b>Engr. Prof. Oluwaseun</b>
+            </p>
+          </Label>
 
-        <GridContainer>
-          <div className="grid-item item1">
-            <img src={file} alt="" className="fileimg" />
-            <p className="big-text">82</p>
-            <p>Total Students</p>
-          </div>
-          <div className="grid-item item2">
-            <img src={file} alt="" className="fileimg" />
-            <p className="big-text">40</p> <p>Male Students</p>
-          </div>{" "}
-          <div className="grid-item item3">
-            <img src={file} alt="" className="fileimg" />
-            <p className="big-text">42</p> <p>Female Students</p>
-          </div>{" "}
-          <div className="grid-item item4">
-            <img src={file} alt="" className="fileimg" />
-            <p className="big-text">9</p> <p>Number of Courses</p>
-          </div>{" "}
-          <div className="grid-item item5">
-            <img src={file} alt="" className="fileimg" />
-            <p className="big-text">3</p> <p>Number of Levels </p>
-          </div>{" "}
-          <div className="grid-item item6">
-            <p> Monthly Attendance Review</p>
-            <div>
-              {" "}
-              {/* <Doughnut data={[25, 28, 50, 76]}
-              /> */}
+          <GridContainer>
+            <div className="grid-item item1">
+              <img src={file} alt="" className="fileimg" />
+              <p className="big-text">82</p>
+              <p>Total Students</p>
             </div>
-          </div>{" "}
-        </GridContainer>
-      </DashboardContents>
-    </DashboardPage>
+            <div className="grid-item item2">
+              <img src={file} alt="" className="fileimg" />
+              <p className="big-text">40</p> <p>Male Students</p>
+            </div>{" "}
+            <div className="grid-item item3">
+              <img src={file} alt="" className="fileimg" />
+              <p className="big-text">42</p> <p>Female Students</p>
+            </div>{" "}
+            <div className="grid-item item4">
+              <img src={file} alt="" className="fileimg" />
+              <p className="big-text">9</p> <p>Number of Courses</p>
+            </div>{" "}
+            <div className="grid-item item5">
+              <img src={file} alt="" className="fileimg" />
+              <p className="big-text">3</p> <p>Number of Levels </p>
+            </div>{" "}
+            <div className="grid-item item6">
+              <p> Monthly Attendance Review</p>
+              <div>
+                {" "}
+                {/* <Doughnut data={[25, 28, 50, 76]}
+              /> */}
+              </div>
+            </div>{" "}
+          </GridContainer>
+        </DashboardContents>
+      </DashboardPage>
+    </div>
   );
 }

@@ -21,7 +21,6 @@ function App() {
             <Route path="/attendance" element={<Attendance />} />
             <Route path="/report" element={<AttendanceReport />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
-            
           </Routes>
         </AuthProvider>
       </Router>

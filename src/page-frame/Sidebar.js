@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { BsColumnsGap, BsTable, BsFileEarmarkText } from "react-icons/bs";
 
 import abuad from "../assets/COE.jpg";
@@ -58,7 +58,7 @@ const iconStyles = {
   color: "var(--clr-dark-green)",
   margin: "0 8px",
 };
-export default function sidebar() {
+export default function Sidebar() {
   return (
     <SideBar>
       <img src={abuad} alt="logo" />
