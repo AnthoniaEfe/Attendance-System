@@ -3,7 +3,7 @@ import Sidebar from "../page-frame/Sidebar";
 import Navigation from "../page-frame/Navigation";
 import { useState } from "react";
 import Modal from "../components/Modal";
-import { GetDocuments } from "../firebase/config";
+import { GetDocuments, serverTimestamp } from "../firebase/config";
 import { useEffect } from "react";
 
 const AttendanceTable = styled.div`
@@ -107,14 +107,21 @@ const ManualButton = styled.button`
 
 export default function Attendance() {
   const [showForm, setShowForm] = useState(false);
-
-  useEffect(() => {
-    let Documents = GetDocuments();
-    console.log("documents", Documents);
-  }, []);
+  const [showData, setShowData] = useState(false);
+  const [documents, setdocuments] = useState([
+    {
+      name: "initialname",
+      matricnumber: "initialmatricNumber",
+      course: "course",
+      addAt: serverTimestamp(),
+    },
+  ]);
 
   function GetTableData() {
-    // Documents = GetDocuments();
+    useEffect(() => {
+      setdocuments(GetDocuments());
+      setShowData(true);
+    }, []);
   }
 
   return (
@@ -161,7 +168,7 @@ export default function Attendance() {
           </div>
           <TableContainer>
             <h2>Attendance Table</h2>
-            <Table>
+            {/* <Table>
               <th>SN</th>
               <th>Name</th>
               <th>Matric Number</th>
@@ -184,8 +191,20 @@ export default function Attendance() {
                   //     );
                   //   }))
                   null}
-            </tbody> */}
-            </Table>
+            </tbody> *
+            </Table> */}
+            {showData ? (
+              <ul>
+                {!documents
+                  ? null
+                  : documents.map((document, index) => (
+                      <li numbering={index + 1} document={document}>
+                        <p>amen</p>
+                        <p>document</p>
+                      </li>
+                    ))}
+              </ul>
+            ) : null}
           </TableContainer>
         </Container>
       </AttendanceTable>
