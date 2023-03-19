@@ -158,10 +158,12 @@ export default function ForgotPassword() {
     sendPasswordResetEmail(auth, email)
       .then(() => {
         setMessage("Check your email for further instructions");
+        console.log(message);
         alert(message);
       })
       .catch((err) => {
         setError(err.message);
+        console.log(error);
         alert(error);
       });
   }
