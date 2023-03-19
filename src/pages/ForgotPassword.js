@@ -2,6 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { sendPasswordResetEmail } from "firebase/auth";
+import { auth } from "../firebase/config.js";
 
 import cartoon1 from "../assets/Delivery.svg";
 import cartoon2 from "../assets/Finance.svg";
@@ -128,8 +129,22 @@ const FormDiv = styled.div`
 `;
 
 const Card = styled.div`
-  padding: 10px;
+  width: 40%;
+  height: 30px;
+  border: 1px solid rgba(0, 0, 0);
+  align-items: center;
+  margin: 10px auto;
+  /* opacity: 0.7; */
+  padding: 5px;
   text-align: center;
+
+  .error {
+    background-color: var(--clr-red);
+  }
+
+  .message {
+    background-color: var(--clr-blue);
+  }
 `;
 
 export default function ForgotPassword() {
@@ -140,27 +155,34 @@ export default function ForgotPassword() {
   async function HandleSubmit(e) {
     e.preventDefault();
 
-    sendPasswordResetEmail(email)
+    sendPasswordResetEmail(auth, email)
       .then(() => {
         setMessage("Check your email for further instructions");
-        console.log("email sent ");
+        alert(message);
       })
       .catch((err) => {
-        console.log(err.message);
+        setError(err.message);
+        alert(error);
       });
   }
 
   return (
     <FormDiv>
-      {error && <Card>{error}</Card>}
-      {message && <Card>{message}</Card>}
-
       <img src={cartoon1} alt="illustration" id="cartoon1" />
       <img src={cartoon2} alt="illustration" id="cartoon2" />
       <img src={abuad} alt="nuesa logo" id="abuad" />
       <div>
         <h2>Password Reset</h2>
-
+        {error && (
+          <Card className="error">
+            <p>{error}</p>
+          </Card>
+        )}
+        {message && (
+          <Card className="message">
+            <p>{message}</p>
+          </Card>
+        )}
         <form onSubmit={HandleSubmit}>
           <input
             type="email"
