@@ -129,22 +129,22 @@ const FormDiv = styled.div`
 `;
 
 const Card = styled.div`
-  width: 40%;
+  width: 70%;
   height: 30px;
-  border: 1px solid rgba(0, 0, 0);
+  border: 1px solid rgb(0, 0, 0);
   align-items: center;
-  margin: 10px auto;
+  margin: 5px;
   /* opacity: 0.7; */
   padding: 5px;
   text-align: center;
 
-  .error {
+  /* .error {
     background-color: var(--clr-red);
   }
 
   .message {
     background-color: var(--clr-blue);
-  }
+  } */
 `;
 
 export default function ForgotPassword() {
@@ -159,12 +159,10 @@ export default function ForgotPassword() {
       .then(() => {
         setMessage("Check your email for further instructions");
         console.log(message);
-        alert(message);
       })
       .catch((err) => {
         setError(err.message);
         console.log(error);
-        alert(error);
       });
   }
 
