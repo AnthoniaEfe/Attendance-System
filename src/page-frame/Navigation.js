@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { signOut, auth } from "../firebase/config.js";
 
 import {
   AiOutlineSetting,
@@ -59,18 +59,18 @@ const iconStyles = {
 export default function Navigation() {
   const navigate = useNavigate();
   const [error, setError] = useState("");
-  const { currentUser, logout } = useAuth();
 
   async function HandleLogOut() {
-    setError("");
-    useEffect(() => {
-      navigate("/dashboard");
-    }, []);
-    try {
-      await logout();
-    } catch {
-      setError("unable to log out");
-    }
+    signOut(auth)
+      .then(() => {
+        console.log("user logged out");
+      })
+      .catch((err) => {
+        setError(err.message);
+        console.log(error);
+      });
+
+    navigate("/");
   }
 
   function BackOne() {

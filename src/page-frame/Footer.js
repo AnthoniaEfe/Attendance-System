@@ -27,8 +27,8 @@ export default function Footer() {
   return (
     <FooterContents>
       <div className="container">
-        <a href="mailto:helpdesk@nnpcgroup.com">Contact Helpdesk</a>
-        <p>&copy; {new Date().getFullYear()} NNPC Ltd.</p>
+        <a href="mailto:anthoniaefe36@gmail.com">Contact Helpdesk</a>
+        <p>&copy; {new Date().getFullYear()} College of Engineering</p>
       </div>
     </FooterContents>
   );
