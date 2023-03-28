@@ -128,25 +128,6 @@ const FormDiv = styled.div`
   }
 `;
 
-const Card = styled.div`
-  width: 70%;
-  height: 30px;
-  border: 1px solid rgb(0, 0, 0);
-  align-items: center;
-  margin: 5px;
-  /* opacity: 0.7; */
-  padding: 5px;
-  text-align: center;
-
-  /* .error {
-    background-color: var(--clr-red);
-  }
-
-  .message {
-    background-color: var(--clr-blue);
-  } */
-`;
-
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
@@ -173,16 +154,26 @@ export default function ForgotPassword() {
       <img src={abuad} alt="nuesa logo" id="abuad" />
       <div>
         <h2>Password Reset</h2>
-        {error && (
-          <Card className="error">
-            <p>{error}</p>
-          </Card>
-        )}
-        {message && (
-          <Card className="message">
-            <p>{message}</p>
-          </Card>
-        )}
+
+        <div
+          style={{
+            backgroundColor: error
+              ? "var(--clr-info-red)"
+              : message
+              ? "var(--clr-blue)"
+              : null,
+            height: "auto",
+            padding: "5%",
+            width: "70%",
+            margin: "20px auto",
+            border: "1px solid var(--clr-dark-red)",
+            borderRadius: "2%",
+            color: "var(--clr-dark-red)",
+          }}
+        >
+          {error ? <p>{error}</p> : message ? <p>{message}</p> : null}
+        </div>
+
         <form onSubmit={HandleSubmit}>
           <input
             type="email"
