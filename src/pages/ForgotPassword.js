@@ -154,25 +154,26 @@ export default function ForgotPassword() {
       <img src={abuad} alt="nuesa logo" id="abuad" />
       <div>
         <h2>Password Reset</h2>
-
-        <div
-          style={{
-            backgroundColor: error
-              ? "var(--clr-info-red)"
-              : message
-              ? "var(--clr-blue)"
-              : null,
-            height: "auto",
-            padding: "5%",
-            width: "70%",
-            margin: "20px auto",
-            border: "1px solid var(--clr-dark-red)",
-            borderRadius: "2%",
-            color: "var(--clr-dark-red)",
-          }}
-        >
-          {error ? <p>{error}</p> : message ? <p>{message}</p> : null}
-        </div>
+        {error ? (
+          <div
+            style={{
+              backgroundColor: error
+                ? "var(--clr-info-red)"
+                : message
+                ? "var(--clr-blue)"
+                : null,
+              height: "auto",
+              padding: "5%",
+              width: "70%",
+              margin: "20px auto",
+              border: "1px solid var(--clr-dark-red)",
+              borderRadius: "2%",
+              color: "var(--clr-dark-red)",
+            }}
+          >
+            <p>{error}</p>
+          </div>
+        ) : null}
 
         <form onSubmit={HandleSubmit}>
           <input
