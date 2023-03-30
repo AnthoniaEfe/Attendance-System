@@ -52,6 +52,7 @@ function GetDocuments() {
       cards.push({ ...doc.data(), id: doc.id });
     });
     console.log(cards);
+    return cards;
   });
 }
 

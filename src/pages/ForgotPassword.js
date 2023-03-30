@@ -128,6 +128,21 @@ const FormDiv = styled.div`
   }
 `;
 
+const InfoCard = styled.div`
+  background-color: var(--clr-info-red);
+  border: 1px solid var(--clr-dark-red);
+  border-radius: 2%;
+  color: var(--clr-dark-red);
+  width: 80%;
+  height: 10%;
+  padding: 5%;
+  margin: 10px auto;
+
+  p {
+    background-color: var(--clr-info-red);
+  }
+`;
+
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
@@ -140,10 +155,12 @@ export default function ForgotPassword() {
       .then(() => {
         setMessage("Check your email for further instructions");
         console.log(message);
+        alert(message);
       })
       .catch((err) => {
         setError(err.message);
         console.log(error);
+        alert(error);
       });
   }
 
@@ -154,7 +171,10 @@ export default function ForgotPassword() {
       <img src={abuad} alt="nuesa logo" id="abuad" />
       <div>
         <h2>Password Reset</h2>
-        {error ? (
+        {/* <InfoCard>
+          <p>Trial card here!</p>
+        </InfoCard> */}
+        {/* {error ? (
           <div
             style={{
               backgroundColor: error
@@ -173,7 +193,7 @@ export default function ForgotPassword() {
           >
             <p>{error}</p>
           </div>
-        ) : null}
+        ) : null} */}
 
         <form onSubmit={HandleSubmit}>
           <input
