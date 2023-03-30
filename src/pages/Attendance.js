@@ -117,17 +117,15 @@ export default function Attendance() {
     },
   ]);
 
-  function GetTableData() {
-    console.log("get documents");
-    setdocuments(GetDocuments());
-    console.log("documents:", documents);
-    setShowData(true);
-    console.log("after get documents");
-    // useEffect(() => {
-    //   setdocuments(GetDocuments());
-    //   setShowData(true);
-    // }, []);
-  }
+  
+    useEffect(() => {
+      console.log("get documents");
+      setdocuments(GetDocuments());
+      console.log("documents:", documents);
+      setShowData(true);
+      console.log("after get documents");
+    }, []);
+  
 
   return (
     <div
@@ -169,14 +167,7 @@ export default function Attendance() {
             >
               Add attendance manually{" "}
             </ManualButton>
-            <button
-              onClick={() => {
-                GetTableData();
-              }}
-            >
-              Get Documents
-            </button>
-            {/* <p>documents</p> */}
+            
           </div>
           <TableContainer>
             <h2>Attendance Table</h2>

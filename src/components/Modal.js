@@ -89,7 +89,7 @@ const ManualForm = styled.form`
 export default function Modal(props) {
   const [name, setName] = useState("");
   const [course, setCourse] = useState("");
-  const [matricNumber, setMatricNumber] = useState("");
+  const [matricNumber, setMatricNumber] = useState("MCT 509");
   const [id, setId] = useState("");
   let Documents = [];
 
@@ -109,8 +109,9 @@ export default function Modal(props) {
       });
 
       Documents = GetDocuments();
-      console.log(Documents);
-      Documents.forEach()
+      // console.log(Documents);
+
+      //get snapshot and push new object to the array
 
       closeModal();
     } else {
