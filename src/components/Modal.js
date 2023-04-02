@@ -126,6 +126,7 @@ export default function Modal(props) {
     deleteDoc(docRef).then(() => {
       setId("");
     });
+    console.log("just deleted")
   }
 
   function closeModal() {
