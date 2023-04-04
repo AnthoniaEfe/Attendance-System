@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { sendPasswordResetEmail } from "firebase/auth";
@@ -56,7 +56,7 @@ const FormDiv = styled.div`
     border-radius: 8%;
 
     h2 {
-      margin: 40px 10px;
+      margin: 40px 10px 20px;
       font-size: 32px;
     }
     a {
@@ -128,21 +128,6 @@ const FormDiv = styled.div`
   }
 `;
 
-const InfoCard = styled.div`
-  background-color: var(--clr-info-red);
-  border: 1px solid var(--clr-dark-red);
-  border-radius: 2%;
-  color: var(--clr-dark-red);
-  width: 80%;
-  height: 10%;
-  padding: 5%;
-  margin: 10px auto;
-
-  p {
-    background-color: var(--clr-info-red);
-  }
-`;
-
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
@@ -155,15 +140,18 @@ export default function ForgotPassword() {
       .then(() => {
         setMessage("Check your email for further instructions");
         console.log(message);
-        alert(message);
+        // alert(message);
       })
       .catch((err) => {
         setError(err.message);
         console.log(error);
-        alert(error);
+        // alert(error);
       });
   }
 
+  useEffect(() => {
+    console.log("there has been a change");
+  }, [error, message]);
   return (
     <FormDiv>
       <img src={cartoon1} alt="illustration" id="cartoon1" />
@@ -171,29 +159,42 @@ export default function ForgotPassword() {
       <img src={abuad} alt="nuesa logo" id="abuad" />
       <div>
         <h2>Password Reset</h2>
-        {/* <InfoCard>
-          <p>Trial card here!</p>
-        </InfoCard> */}
-        {/* {error ? (
+
+        {error ? (
           <div
             style={{
-              backgroundColor: error
-                ? "var(--clr-info-red)"
-                : message
-                ? "var(--clr-blue)"
-                : null,
-              height: "auto",
-              padding: "5%",
-              width: "70%",
-              margin: "20px auto",
+              height: "10%",
+              width: "80%",
+              backgroundColor: "var(--clr-info-red)",
               border: "1px solid var(--clr-dark-red)",
-              borderRadius: "2%",
-              color: "var(--clr-dark-red)",
+              borderRadius: "10px",
+              justifyContent: "center",
+              alignContent: "center",
+              margin: "10px 0",
             }}
           >
-            <p>{error}</p>
+            <p style={{ color: "var(--clr-dark-red)", fontSize: "16px" }}>
+              {error}
+            </p>
           </div>
-        ) : null} */}
+        ) : message ? (
+          <div
+            style={{
+              height: "10%",
+              width: "80%",
+              backgroundColor: "var(--clr-blue)",
+              border: "1px solid var(--clr-dark-blue)",
+              borderRadius: "10px",
+              justifyContent: "center",
+              alignContent: "center",
+              margin: "10px 0",
+            }}
+          >
+            <p style={{ color: "var(--clr-dark-blue)", fontSize: "16px" }}>
+              {message}
+            </p>
+          </div>
+        ) : null}
 
         <form onSubmit={HandleSubmit}>
           <input
