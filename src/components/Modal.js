@@ -122,10 +122,10 @@ export default function Modal(props) {
   function handleDelete(e) {
     e.preventDefault();
 
-    const docRef = doc(db, "cards", "L1y5Q6bU75M4teCCfN5M");
-    deleteDoc(docRef).then(() => {
-      setId("");
-    });
+    // const docRef = doc(db, "cards", "L1y5Q6bU75M4teCCfN5M");
+    // deleteDoc(docRef).then(() => {
+    //   setId("");
+    // });
     console.log("just deleted")
   }
 

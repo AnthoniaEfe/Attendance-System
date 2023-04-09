@@ -3,7 +3,8 @@ import Sidebar from "../page-frame/Sidebar";
 import Navigation from "../page-frame/Navigation";
 import { useState } from "react";
 import Modal from "../components/Modal";
-import { GetDocuments, serverTimestamp } from "../firebase/config";
+import { GetDocuments, serverTimestamp, db } from "../firebase/config";
+import { collection, onSnapshot } from "firebase/firestore";
 import { useEffect } from "react";
 
 const AttendanceTable = styled.div`
@@ -108,8 +109,26 @@ const ManualButton = styled.button`
 export default function Attendance() {
   const [showForm, setShowForm] = useState(false);
   const [showData, setShowData] = useState(false);
-  const [documents, setdocuments] = useState({});
+  const [documents, setDocuments] = useState({
+    name: "initialname",
+    matricnumber: "initialmatricNumber",
+    course: "course",
+    addAt: serverTimestamp(),
+  });
 
+  useEffect(() => {
+    let cards = [];
+    onSnapshot(collection(db, "cards"), (snapshot) => {
+      snapshot.docs.forEach((doc) => {
+        cards.push({ ...doc.data(), id: doc.id });
+      });
+      return cards;
+    });
+
+    console.log(cards);
+    setDocuments(cards)
+    console.log(documents);
+  }, []);
 
   return (
     <div
@@ -151,7 +170,6 @@ export default function Attendance() {
             >
               Add attendance manually{" "}
             </ManualButton>
-            
           </div>
           <TableContainer>
             <h2>Attendance Table</h2>

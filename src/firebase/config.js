@@ -56,19 +56,12 @@ function GetDocuments() {
   });
 }
 
-GetDocuments()
-
 //get single document
 function GetDocument() {
   const docRef = doc(db, "cards", "L1y5Q6bU75M4teCCfN5M");
   onSnapshot(docRef, (doc) => {
     console.log(doc.data(), doc.id);
   });
-}
-
-//password reset email
-function resetPassword(email) {
-  sendPasswordResetEmail(email);
 }
 
 //exports
