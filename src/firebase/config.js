@@ -51,10 +51,12 @@ function GetDocuments() {
     snapshot.docs.forEach((doc) => {
       cards.push({ ...doc.data(), id: doc.id });
     });
-    // console.log(cards);
+    console.log(cards);
     return cards;
   });
 }
+
+GetDocuments()
 
 //get single document
 function GetDocument() {

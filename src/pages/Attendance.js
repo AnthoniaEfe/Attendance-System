@@ -108,24 +108,8 @@ const ManualButton = styled.button`
 export default function Attendance() {
   const [showForm, setShowForm] = useState(false);
   const [showData, setShowData] = useState(false);
-  const [documents, setdocuments] = useState([
-    {
-      name: "initialname",
-      matricnumber: "initialmatricNumber",
-      course: "course",
-      addAt: serverTimestamp(),
-    },
-  ]);
+  const [documents, setdocuments] = useState({});
 
-  
-    useEffect(() => {
-      console.log("get documents");
-      setdocuments(GetDocuments());
-      console.log("documents:", documents);
-      setShowData(true);
-      console.log("after get documents");
-    }, []);
-  
 
   return (
     <div
