@@ -115,21 +115,20 @@ export default function Attendance() {
     course: "course",
     addAt: serverTimestamp(),
   });
-
-  useEffect(() => {
+  async function getCards() {
     let cards = [];
     onSnapshot(collection(db, "cards"), (snapshot) => {
       snapshot.docs.forEach((doc) => {
         cards.push({ ...doc.data(), id: doc.id });
       });
-      return cards;
     });
+    return cards;
+    // console.log(cards);
+    // setDocuments(cards);
+    // console.log(documents);
+  }
 
-    console.log(cards);
-    setDocuments(cards)
-    console.log(documents);
-  }, []);
-
+  console.log(getCards());
   return (
     <div
       style={{
