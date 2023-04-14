@@ -172,6 +172,40 @@ export default function Attendance() {
           </div>
           <TableContainer>
             <h2>Attendance Table</h2>
+            <Table>
+              <th>SN</th>
+              <th>Name</th>
+              <th>Matric Number</th>
+              <th>Course</th>
+              <th>Time</th>
+              <th>Date</th>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Maria Andrews</td>
+                  <td>17/ENG04/035</td>
+                  <td>EEE527</td>
+                  <td>--</td>
+                  <td>--</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Sandra Okeke</td>
+                  <td>18/ENG05/046</td>
+                  <td>MCT509</td>
+                  <td>--</td>
+                  <td>--</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Anthonia Efe</td>
+                  <td>18/ENG05/049</td>
+                  <td>MCT509</td>
+                  <td>--</td>
+                  <td>--</td>
+                </tr>
+              </tbody>
+            </Table>
             {/* <Table>
               <th>SN</th>
               <th>Name</th>
