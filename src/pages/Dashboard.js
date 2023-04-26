@@ -3,6 +3,7 @@ import { Doughnut, Bar } from "react-chartjs-2";
 import Sidebar from "../page-frame/Sidebar";
 import Navigation from "../page-frame/Navigation";
 import file from "../assets/ready.png";
+import Donut from "./chart";
 
 // const data = {
 //   labels: ["Red", "Green", "Yellow", "Grey", "Blue"],
@@ -116,11 +117,11 @@ export default function Dashboard() {
         // alignItems: "center",
         gap: "0",
       }}
-    >   <Navigation />
-        <Sidebar />
+    >
+      {" "}
+      <Navigation />
+      <Sidebar />
       <DashboardPage>
-     
-
         <DashboardContents>
           <h2>Dashboard</h2>
           <Label>
@@ -157,6 +158,7 @@ export default function Dashboard() {
                 {" "}
                 {/* <Doughnut data={[25, 28, 50, 76]}
               /> */}
+                <Donut />
               </div>
             </div>{" "}
           </GridContainer>
