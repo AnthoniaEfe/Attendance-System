@@ -109,49 +109,7 @@ const ManualButton = styled.button`
 export default function Attendance() {
   const [showForm, setShowForm] = useState(false);
   const [showData, setShowData] = useState(false);
-  const [documents, setDocuments] = useState([
-    
-  ]);
-// useEffect(() => {
-  //   // setDocuments(documents, ...items);
-  // }, [items]);
-
-  // async function getCards() {
-  //   onSnapshot(collection(db, "cards"), (snapshot) => {
-  //     snapshot.docs.forEach((doc) => {
-  //       pushTOArr({ ...doc.data(), id: doc.id });
-  //       console.log("hdvv", doc.data());
-  //     });
-  //     console.log("fvvfvvfv", items);
-  //     // setDocuments(items)
-  //   });
-  // }
-  useEffect(() => {
-    const getCards2 = async () => {
-      try {
-        const items = [];
-        const pushTOArr = (item) => {
-          items.push(item);
-          console.log("yes bitch", items);
-          // setDocuments(...documents, item)
-        };
-        onSnapshot(collection(db, "cards"), (snapshot) => {
-          snapshot.docs.forEach((doc) => {
-            pushTOArr({ ...doc.data(), id: doc.id });
-            console.log("hdvv", doc.data());
-          });
-          console.log("fvvfvvfv", items);
-          setDocuments(...documents, items);
-        });
-
-        // setDocuments(items);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    getCards2();
-  });
-
+  const [documents, setDocuments] = useState([]);
   // useEffect(() => {
   //   // setDocuments(documents, ...items);
   // }, [items]);
@@ -181,7 +139,7 @@ export default function Attendance() {
             console.log("hdvv", doc.data());
           });
           console.log("fvvfvvfv", items);
-          setDocuments(...documents, items);
+          // setDocuments(...documents, items);
         });
 
         // setDocuments(items);
@@ -192,7 +150,6 @@ export default function Attendance() {
     getCards2();
   });
 
-  
   useEffect(() => {
     const fetchData = async () => {
       db.on("value", (snapshot) => {
@@ -203,7 +160,6 @@ export default function Attendance() {
     };
     fetchData();
   }, []);
-
 
   return (
     <div
@@ -247,19 +203,23 @@ export default function Attendance() {
             </ManualButton>
           </div>
           <TableContainer>
-            <div>
-              {documents.map((item) => (
-                <p key={item.id}>{item.title}</p>
-              ))}
-            </div>
+            {documents ? (
+              <div>
+                {documents.map((item) => (
+                  <p key={item.id}>{item.title}</p>
+                ))}
+              </div>
+            ) : null}
 
             <Table>
-              <th>SN</th>
-              <th>Name</th>
-              <th>Matric Number</th>
-              <th>Course</th>
-              <th>Time</th>
-              <th>Date</th>
+              <tr>
+                <th>SN</th>
+                <th>Name</th>
+                <th>Matric Number</th>
+                <th>Course</th>
+                <th>Time</th>
+                <th>Date</th>
+              </tr>
               <tbody>
                 <tr>
                   <td>1</td>

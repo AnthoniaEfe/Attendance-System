@@ -80,6 +80,14 @@ export default function SignUp() {
     <FormDiv>
       {" "}
       <form onSubmit={HandleSignUp}>
+        <label for="cars">Choose a car:</label>
+        <select id="cars" name="cars">
+          <option value="volvo">Volvo</option>
+          <option value="saab">Saab</option>
+          <option value="fiat">Fiat</option>
+          <option value="audi">Audi</option>
+        </select>
+
         <input
           type="text"
           onChange={(e) => setTitle(e.target.value)}
