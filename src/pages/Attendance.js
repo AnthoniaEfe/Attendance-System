@@ -8,7 +8,7 @@ import { collection, onSnapshot } from "firebase/firestore";
 import { useEffect } from "react";
 
 const AttendanceTable = styled.div`
-  background-color: #f3f2e7;
+  background-color: var(--clr-bg-grey);
   display: flex;
   width: auto;
   height: 100vh;

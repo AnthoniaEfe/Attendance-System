@@ -1,12 +1,11 @@
 import styled from "styled-components";
-import { Doughnut, Bar } from "react-chartjs-2";
 import Sidebar from "../page-frame/Sidebar";
 import Navigation from "../page-frame/Navigation";
 import file from "../assets/ready.png";
-import Donut from "./chart";
+import Donut from "./Donut";
 
 const DashboardPage = styled.div`
-  background-color: #f3f2e7;
+  background-color: var(--clr-bg-grey);
   display: flex;
   width: auto;
   height: 100vh;
@@ -56,15 +55,25 @@ const GridContainer = styled.div`
     display: grid;
     grid-template-columns: 28% 72%;
     grid-template-rows: 50% 50%;
-    box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.3);
+    /* box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.3); */
   }
 
   .item6 {
     display: flex;
     flex-direction: column;
     grid-area: 2 /2 / span 2 / span 2;
-    padding: 10px;
+    padding: 15px;
     text-align: center;
+    p {
+      align-self: center;
+      font-weight: 700;
+    }
+    #chart {
+      align-self: center;
+      justify-self: center;
+      background-color: green;
+      margin: 10px 10px;
+    }
   }
 
   .fileimg {
@@ -138,9 +147,8 @@ export default function Dashboard() {
             </div>{" "}
             <div className="grid-item item6">
               <p> Monthly Attendance Review</p>
-              <div>
-                <Donut />
-              </div>
+              <div id="chart"></div>
+              <Donut />
             </div>{" "}
           </GridContainer>
         </DashboardContents>

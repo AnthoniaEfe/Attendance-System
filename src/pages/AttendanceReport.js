@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import Sidebar from "../page-frame/Sidebar";
 import Navigation from "../page-frame/Navigation";
+
 const Contents = styled.div`
-  background-color: #f3f2e7;
+  background-color: var(--clr-bg-grey);
   display: flex;
   width: auto;
   height: 100vh;
@@ -42,11 +43,10 @@ export default function AttendanceReport() {
         // alignItems: "center",
         gap: "0",
       }}
-    ><Navigation />
-        <Sidebar />
+    >
+      <Navigation />
+      <Sidebar />
       <Contents>
-        
-
         <Container>
           <h2>Attendance Report</h2>
           <Label>
