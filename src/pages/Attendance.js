@@ -3,7 +3,7 @@ import Sidebar from "../page-frame/Sidebar";
 import Navigation from "../page-frame/Navigation";
 import { useState } from "react";
 import Modal from "../components/Modal";
-import { GetDocuments, serverTimestamp, db } from "../firebase/config";
+import { GetDocuments, db } from "../firebase/config";
 import { collection, onSnapshot } from "firebase/firestore";
 import { useEffect } from "react";
 
@@ -109,26 +109,90 @@ const ManualButton = styled.button`
 export default function Attendance() {
   const [showForm, setShowForm] = useState(false);
   const [showData, setShowData] = useState(false);
-  const [documents, setDocuments] = useState();
+  const [documents, setDocuments] = useState([
+    
+  ]);
+// useEffect(() => {
+  //   // setDocuments(documents, ...items);
+  // }, [items]);
 
+  // async function getCards() {
+  //   onSnapshot(collection(db, "cards"), (snapshot) => {
+  //     snapshot.docs.forEach((doc) => {
+  //       pushTOArr({ ...doc.data(), id: doc.id });
+  //       console.log("hdvv", doc.data());
+  //     });
+  //     console.log("fvvfvvfv", items);
+  //     // setDocuments(items)
+  //   });
+  // }
   useEffect(() => {
-    getCards();
-    console.log("cards data is:", getCards());
-    setDocuments(getCards());
-    // console.log(documents);
-  }, []);
+    const getCards2 = async () => {
+      try {
+        const items = [];
+        const pushTOArr = (item) => {
+          items.push(item);
+          console.log("yes bitch", items);
+          // setDocuments(...documents, item)
+        };
+        onSnapshot(collection(db, "cards"), (snapshot) => {
+          snapshot.docs.forEach((doc) => {
+            pushTOArr({ ...doc.data(), id: doc.id });
+            console.log("hdvv", doc.data());
+          });
+          console.log("fvvfvvfv", items);
+          setDocuments(...documents, items);
+        });
 
-  async function getCards() {
-    let cards = [];
-    onSnapshot(collection(db, "cards"), (snapshot) => {
-      snapshot.docs.forEach((doc) => {
-        cards.push({ ...doc.data(), id: doc.id });
-      });
-    });
-    setDocuments(cards);
-    return cards;
-  }
+        // setDocuments(items);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getCards2();
+  });
 
+  // useEffect(() => {
+  //   // setDocuments(documents, ...items);
+  // }, [items]);
+
+  // async function getCards() {
+  //   onSnapshot(collection(db, "cards"), (snapshot) => {
+  //     snapshot.docs.forEach((doc) => {
+  //       pushTOArr({ ...doc.data(), id: doc.id });
+  //       console.log("hdvv", doc.data());
+  //     });
+  //     console.log("fvvfvvfv", items);
+  //     // setDocuments(items)
+  //   });
+  // }
+  useEffect(() => {
+    const getCards2 = async () => {
+      try {
+        const items = [];
+        const pushTOArr = (item) => {
+          items.push(item);
+          console.log("yes bitch", items);
+          // setDocuments(...documents, item)
+        };
+        onSnapshot(collection(db, "cards"), (snapshot) => {
+          snapshot.docs.forEach((doc) => {
+            pushTOArr({ ...doc.data(), id: doc.id });
+            console.log("hdvv", doc.data());
+          });
+          console.log("fvvfvvfv", items);
+          setDocuments(...documents, items);
+        });
+
+        // setDocuments(items);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getCards2();
+  });
+
+  
   useEffect(() => {
     const fetchData = async () => {
       db.on("value", (snapshot) => {
@@ -139,6 +203,7 @@ export default function Attendance() {
     };
     fetchData();
   }, []);
+
 
   return (
     <div
@@ -189,16 +254,12 @@ export default function Attendance() {
             </div>
 
             <Table>
-              <thead>
-                <tr>
-                  <th>SN</th>
-                  <th>Name</th>
-                  <th>Matric Number</th>
-                  <th>Course</th>
-                  <th>Time</th>
-                  <th>Date</th>
-                </tr>
-              </thead>
+              <th>SN</th>
+              <th>Name</th>
+              <th>Matric Number</th>
+              <th>Course</th>
+              <th>Time</th>
+              <th>Date</th>
               <tbody>
                 <tr>
                   <td>1</td>
