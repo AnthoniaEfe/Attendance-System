@@ -26,7 +26,7 @@ const FormDiv = styled.div`
     border-radius: 10px;
   }
 
-button {
+  button {
     width: 80%;
     margin: 10px auto;
     padding: 5px 10px;
@@ -50,6 +50,9 @@ export default function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [title, setTitle] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
 
   async function HandleSignUp(e) {
     e.preventDefault();
@@ -78,6 +81,27 @@ export default function SignUp() {
       {" "}
       <form onSubmit={HandleSignUp}>
         <input
+          type="text"
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Title"
+          value={title}
+          required
+        />
+        <input
+          type="options"
+          onChange={(e) => setFirstName(e.target.value)}
+          placeholder="First Name"
+          value={firstName}
+          required
+        />
+        <input
+          type="text"
+          onChange={(e) => setLastName(e.target.value)}
+          placeholder="Last Name"
+          value={lastName}
+          required
+        />
+        <input
           type="email"
           onChange={(e) => setEmail(e.target.value)}
           placeholder="E-mail"
@@ -96,12 +120,12 @@ export default function SignUp() {
         <input
           type="password"
           onChange={(e) => setConfirmPassword(e.target.value)}
-          placeholder="confirm password"
+          placeholder="Confirm password"
           value={confirmPassword}
           required
         />
 
-<button>SIGN UP</button>
+        <button>SIGN UP</button>
       </form>
     </FormDiv>
   );

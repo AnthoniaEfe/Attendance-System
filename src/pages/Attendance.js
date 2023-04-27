@@ -109,14 +109,15 @@ const ManualButton = styled.button`
 export default function Attendance() {
   const [showForm, setShowForm] = useState(false);
   const [showData, setShowData] = useState(false);
-  const [documents, setDocuments] = useState([
-    {
-      name: "initialname",
-      matricnumber: "initialmatricNumber",
-      course: "course",
-      addAt: serverTimestamp(),
-    },
-  ]);
+  const [documents, setDocuments] = useState();
+
+  useEffect(() => {
+    getCards();
+    console.log("cards data is:", getCards());
+    setDocuments(getCards());
+    // console.log(documents);
+  }, []);
+
   async function getCards() {
     let cards = [];
     onSnapshot(collection(db, "cards"), (snapshot) => {
@@ -124,6 +125,7 @@ export default function Attendance() {
         cards.push({ ...doc.data(), id: doc.id });
       });
     });
+    setDocuments(cards);
     return cards;
   }
 
@@ -138,7 +140,6 @@ export default function Attendance() {
     fetchData();
   }, []);
 
-  console.log(getCards());
   return (
     <div
       style={{
@@ -165,13 +166,13 @@ export default function Attendance() {
             }}
           >
             {/* {" "}
-            <Label>
+            <Lable>
               <button>100lvl</button>
               <button>200lvl</button>
               <button>300lvl</button>
               <button>400lvl</button>
               <button>500lvl</button>
-            </Label> */}
+            </Lable> */}
             <ManualButton
               onClick={() => {
                 setShowForm(!showForm);
@@ -186,13 +187,18 @@ export default function Attendance() {
                 <p key={item.id}>{item.title}</p>
               ))}
             </div>
+
             <Table>
-              <th>SN</th>
-              <th>Name</th>
-              <th>Matric Number</th>
-              <th>Course</th>
-              <th>Time</th>
-              <th>Date</th>
+              <thead>
+                <tr>
+                  <th>SN</th>
+                  <th>Name</th>
+                  <th>Matric Number</th>
+                  <th>Course</th>
+                  <th>Time</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
               <tbody>
                 <tr>
                   <td>1</td>
