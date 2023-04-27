@@ -21,8 +21,7 @@ export default function Donut() {
         options={chartOptions}
         series={chartData}
         type="donut"
-        height="100%"
-        width="100%"
+        height="230"
       />
     </div>
   );

@@ -26,7 +26,7 @@ const Container = styled.div`
   }
 `;
 
-const Label = styled.div`
+const Lable = styled.div`
   width: 35%;
   /* background-color: white; */
   border-radius: 25px;
@@ -53,7 +53,7 @@ const Label = styled.div`
 
 const TableContainer = styled.div`
   border-radius: 25px;
-  box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.3);
+  /* box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.3); */
   margin-top: 15px;
   width: 100%;
   height: auto;
@@ -109,12 +109,14 @@ const ManualButton = styled.button`
 export default function Attendance() {
   const [showForm, setShowForm] = useState(false);
   const [showData, setShowData] = useState(false);
-  const [documents, setDocuments] = useState({
-    name: "initialname",
-    matricnumber: "initialmatricNumber",
-    course: "course",
-    addAt: serverTimestamp(),
-  });
+  const [documents, setDocuments] = useState([
+    {
+      name: "initialname",
+      matricnumber: "initialmatricNumber",
+      course: "course",
+      addAt: serverTimestamp(),
+    },
+  ]);
   async function getCards() {
     let cards = [];
     onSnapshot(collection(db, "cards"), (snapshot) => {
@@ -123,10 +125,18 @@ export default function Attendance() {
       });
     });
     return cards;
-    // console.log(cards);
-    // setDocuments(cards);
-    // console.log(documents);
   }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      db.on("value", (snapshot) => {
+        const firebaseData = snapshot.val();
+        const dataArray = Object.values(firebaseData);
+        setDocuments(dataArray);
+      });
+    };
+    fetchData();
+  }, []);
 
   console.log(getCards());
   return (
@@ -154,14 +164,14 @@ export default function Attendance() {
               alignItems: "top",
             }}
           >
-            {" "}
+            {/* {" "}
             <Label>
               <button>100lvl</button>
               <button>200lvl</button>
               <button>300lvl</button>
               <button>400lvl</button>
               <button>500lvl</button>
-            </Label>
+            </Label> */}
             <ManualButton
               onClick={() => {
                 setShowForm(!showForm);
@@ -171,7 +181,11 @@ export default function Attendance() {
             </ManualButton>
           </div>
           <TableContainer>
-            <h2>Attendance Table</h2>
+            <div>
+              {documents.map((item) => (
+                <p key={item.id}>{item.title}</p>
+              ))}
+            </div>
             <Table>
               <th>SN</th>
               <th>Name</th>

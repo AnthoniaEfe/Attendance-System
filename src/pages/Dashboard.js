@@ -24,11 +24,14 @@ const DashboardContents = styled.div`
 `;
 
 const Label = styled.div`
-  width: 30%;
+  min-width: 25%;
+  max-width: 40%;
+  width: auto;
+  text-overflow: ellipsis;
   background-color: white;
   border-radius: 25px;
   margin: 10px 0;
-  padding: 5px;
+  padding: 5px 10px;
 
   p {
     padding: 5px;
@@ -42,8 +45,8 @@ const GridContainer = styled.div`
   height: 85%;
   padding: 20px 0;
   display: grid;
-  grid-template-columns: 1fr repeat(2, 0.8fr);
-  grid-template-rows: 0.3fr repeat(2, 0.3fr);
+  grid-template-columns: 0.9fr repeat(2, 0.9fr);
+  grid-template-rows: 0.5fr repeat(2, 0.5fr);
   gap: 30px 45px;
   align-items: space-evenly;
   justify-content: center;
@@ -71,8 +74,9 @@ const GridContainer = styled.div`
     #chart {
       align-self: center;
       justify-self: center;
-      background-color: green;
-      margin: 10px 10px;
+      margin: 5px auto;
+      height: 50px;
+      width: 80%;
     }
   }
 
@@ -146,9 +150,10 @@ export default function Dashboard() {
               <p className="big-text">3</p> <p>Number of Levels </p>
             </div>{" "}
             <div className="grid-item item6">
-              <p> Monthly Attendance Review</p>
-              <div id="chart"></div>
-              <Donut />
+              <p> Attendance Review</p>
+              <div id="chart">
+                <Donut />
+              </div>
             </div>{" "}
           </GridContainer>
         </DashboardContents>

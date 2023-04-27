@@ -16,7 +16,7 @@ const SideBar = styled.div`
     background-color: var(--clr-white);
     margin: 20px 5px;
     height: 10%;
-    width: 100%;
+    width: 95%;
   }
 `;
 
