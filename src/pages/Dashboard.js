@@ -5,22 +5,6 @@ import Navigation from "../page-frame/Navigation";
 import file from "../assets/ready.png";
 import Donut from "./chart";
 
-// const data = {
-//   labels: ["Red", "Green", "Yellow", "Grey", "Blue"],
-//   datasets: [
-//     {
-//       label: "My First Dataset",
-//       data: [11, 16, 7, 3, 14],
-//       backgroundColor: [
-//         "rgb(255, 99, 132)",
-//         "rgb(75, 192, 192)",
-//         "rgb(255, 205, 86)",
-//         "rgb(201, 203, 207)",
-//         "rgb(54, 162, 235)",
-//       ],
-//     },
-//   ],
-// };
 const DashboardPage = styled.div`
   background-color: #f3f2e7;
   display: flex;
@@ -155,9 +139,6 @@ export default function Dashboard() {
             <div className="grid-item item6">
               <p> Monthly Attendance Review</p>
               <div>
-                {" "}
-                {/* <Doughnut data={[25, 28, 50, 76]}
-              /> */}
                 <Donut />
               </div>
             </div>{" "}
