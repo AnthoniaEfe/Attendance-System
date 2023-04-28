@@ -100,7 +100,7 @@ const LoginPageForm = styled.div`
   border-radius: 8%;
 
   h2 {
-    margin: 60px 10px 10px;
+    margin: 20px 10px;
     font-size: 32px;
   }
   a {
@@ -109,7 +109,7 @@ const LoginPageForm = styled.div`
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
-    margin: 3px 0;
+    margin: 5px 0;
 
     &:active {
       text-decoration: 1px underline var(--clr-dark-green);

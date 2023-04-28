@@ -123,7 +123,7 @@ export default function Dashboard() {
           <h2>Dashboard</h2>
           <Label>
             <p>
-              Good Afternoon, <b>Engr. Prof. Oluwaseun</b>
+              {/* {title} {firstName} {lastName} */}
             </p>
           </Label>
 

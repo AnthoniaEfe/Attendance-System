@@ -9,6 +9,7 @@ import {
 
 const FormDiv = styled.div`
   width: 100%;
+  margin-top: 20px;
 
   form {
     display: flex;
@@ -26,8 +27,9 @@ const FormDiv = styled.div`
     margin: 5px auto;
     align-self: center;
     color: var(--clr-darkest-grey);
-    border: 1px solid var(--clr-darker-grey);
-    border-radius: 10px;
+    border: none;
+    border-bottom: 1px solid var(--clr-darker-grey);
+    /* border-radius: 10px; */
   }
 
   .new-user {

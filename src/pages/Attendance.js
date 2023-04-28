@@ -26,7 +26,7 @@ const Container = styled.div`
   }
 `;
 
-const Lable = styled.div`
+const Label = styled.div`
   width: 35%;
   /* background-color: white; */
   border-radius: 25px;
@@ -187,13 +187,13 @@ export default function Attendance() {
             }}
           >
             {/* {" "}
-            <Lable>
+            <Label>
               <button>100lvl</button>
               <button>200lvl</button>
               <button>300lvl</button>
               <button>400lvl</button>
               <button>500lvl</button>
-            </Lable> */}
+            </Label> */}
             <ManualButton
               onClick={() => {
                 setShowForm(!showForm);
@@ -212,14 +212,16 @@ export default function Attendance() {
             ) : null}
 
             <Table>
-              <tr>
-                <th>SN</th>
-                <th>Name</th>
-                <th>Matric Number</th>
-                <th>Course</th>
-                <th>Time</th>
-                <th>Date</th>
-              </tr>
+              <thead>
+                <tr>
+                  <th>SN</th>
+                  <th>Name</th>
+                  <th>Matric Number</th>
+                  <th>Course</th>
+                  <th>Time</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
               <tbody>
                 <tr>
                   <td>1</td>
