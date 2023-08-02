@@ -17,9 +17,9 @@ function App() {
         <AuthProvider>
           <Routes>
             <Route path="/" element={<LoginPage />} />
-            <Route path="/dashboard" element={<Dashboard />} />
+            {/* <Route path="/dashboard" element={<Dashboard />} /> */}
             <Route path="/attendance" element={<Attendance />} />
-            <Route path="/report" element={<AttendanceReport />} />
+            {/* <Route path="/report" element={<AttendanceReport />} /> */}
             <Route path="/forgot-password" element={<ForgotPassword />} />
           </Routes>
         </AuthProvider>

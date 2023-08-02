@@ -79,7 +79,7 @@ export default function Login() {
       .then((cred) => {
         console.log("user log in: ", cred.user);
 
-        navigate("/dashboard");
+        navigate("/attendance");
       })
       .catch((err) => console.log(err.message));
   }

@@ -6,6 +6,7 @@ import Modal from "../components/Modal";
 import { GetDocuments, db } from "../firebase/config";
 import { collection, onSnapshot } from "firebase/firestore";
 import { useEffect } from "react";
+import { data } from "../data";
 
 const AttendanceTable = styled.div`
   background-color: var(--clr-bg-grey);
@@ -222,31 +223,19 @@ export default function Attendance() {
                   <th>Date</th>
                 </tr>
               </thead>
+
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Maria Andrews</td>
-                  <td>17/ENG04/035</td>
-                  <td>EEE527</td>
-                  <td>--</td>
-                  <td>--</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Sandra Okeke</td>
-                  <td>18/ENG05/046</td>
-                  <td>MCT509</td>
-                  <td>--</td>
-                  <td>--</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>Anthonia Efe</td>
-                  <td>18/ENG05/049</td>
-                  <td>MCT509</td>
-                  <td>--</td>
-                  <td>--</td>
-                </tr>
+                {data.map((m) => (
+                  <tr>
+                    <td>{m.RfidCard}</td>
+                    <td>{m.name}</td>
+                    <td>{m.matNum}</td>
+                    <td>{m.department}</td>
+                    <td>{m.level}</td>
+
+                    <td>--</td>
+                  </tr>
+                ))}
               </tbody>
             </Table>
             {/* <Table>

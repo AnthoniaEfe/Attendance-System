@@ -1,3 +1,5 @@
+#include <LiquidCrystal.h>
+
 
 #include <MFRC522.h>  // MFRC522 RFID module library.
 #include <SPI.h>      // SPI device communication library.
